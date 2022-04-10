@@ -8,4 +8,8 @@ public class InputView {
     public static String inputPlayersNames() {
         return scanner.next();
     }
+
+    public static String inputLadderResults() {
+        return scanner.next();
+    }
 }
