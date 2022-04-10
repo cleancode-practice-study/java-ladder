@@ -1,11 +1,14 @@
 package main.java.controller;
 
+import main.java.model.Convert;
+import main.java.model.Players;
 import main.java.view.InputView;
 import main.java.view.OutputView;
 
 public class Controller {
     public void play(){
-        String names = inputPlayersNames();
+        String[] names = inputPlayersNames();
+        Players players = new Players(names);
         String results = inputLadderResults();
         int maxHeight = inputLadderMaxHeight();
     }
@@ -20,8 +23,9 @@ public class Controller {
         return InputView.inputLadderResults();
     }
 
-    private String inputPlayersNames(){
+    private String[] inputPlayersNames(){
         OutputView.printPlayersNamesInputMessage();
-        return InputView.inputPlayersNames();
+        String names = InputView.inputPlayersNames();
+        return Convert.splitNames(names);
     }
 }
