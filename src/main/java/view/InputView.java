@@ -12,4 +12,8 @@ public class InputView {
     public static String inputLadderResults() {
         return scanner.next();
     }
+
+    public static int inputMaxHeight() {
+        return scanner.nextInt();
+    }
 }
