@@ -22,4 +22,16 @@ public class LadderGame {
         String[] participantsNames = names.split(",");
         return new ArrayList<>(Arrays.asList(participantsNames));
     }
+
+    public static Outputs getOutputs(String outputNames) {
+        List<String> splitOutputs = splitNames(outputNames);
+
+        List<Output> outputs = new ArrayList<>();
+
+        for (String output : splitOutputs) {
+            outputs.add(new Output(output));
+        }
+
+        return new Outputs(outputs);
+    }
 }

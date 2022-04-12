@@ -1,8 +1,6 @@
 package controller;
 
-import domain.LadderGame;
-import domain.Player;
-import domain.Players;
+import domain.*;
 import view.InputView;
 import view.OutputView;
 
@@ -10,26 +8,61 @@ public class Controller {
 
     public void run() {
         Players players = createPlayers();
-        for(Player player : players.getPlayers()) {
+        Outputs outputs = createOutputs(players);
+
+        for (Player player : players.getPlayers()) {
             System.out.println(player.getName());
+        }
+
+        for (Output output : outputs.getOutputs()) {
+            System.out.println(output.getOutputName());
         }
     }
 
     public Players createPlayers() {
         String playerNames;
+        boolean isContainComma;
 
         do {
             playerNames = InputView.getPlayerNamesInput();
-            checkInputNames(playerNames);
-        } while (!playerNames.contains(","));
+            isContainComma = checkContainComma(playerNames);
+        } while (!isContainComma);
 
         return LadderGame.getParticipantsByNames(playerNames);
     }
 
-    private void checkInputNames(String names) {
-        if (!names.contains(",")) {
-            OutputView.printInputNamesErrorMessage();
+    private boolean checkContainComma(String names) {
+        if (names.contains(",")) {
+            return true;
         }
+
+        OutputView.printInputNamesErrorMessage();
+        return false;
+    }
+
+    public Outputs createOutputs(Players players) {
+        String outputNames;
+        boolean isMatchedWithPlayerCount;
+        boolean isContainComma;
+
+        do {
+            outputNames = InputView.getGameResultInput();
+            isMatchedWithPlayerCount = checkIsMatchedWithPlayerCount(outputNames, players);
+            isContainComma = checkContainComma(outputNames);
+        } while (!isMatchedWithPlayerCount || !isContainComma);
+
+        return LadderGame.getOutputs(outputNames);
+    }
+
+    private boolean checkIsMatchedWithPlayerCount(String outputNames, Players players) {
+        String[] outputs = outputNames.split(",");
+
+        if (outputs.length == players.getPlayerCount()) {
+            return true;
+        }
+
+        OutputView.printInputResultErrorMessage();
+        return false;
     }
 }
 
