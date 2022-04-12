@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LadderGame {
-    public static List<Player> getParticipantsByNames(String playerNames) {
+    public static Players getParticipantsByNames(String playerNames) {
         List<String> splitNames = splitNames(playerNames);
 
         List<Player> players = new ArrayList<>();
@@ -15,7 +15,7 @@ public class LadderGame {
             players.add(player);
         }
 
-        return players;
+        return new Players(players);
     }
 
     private static List<String> splitNames(String names) {

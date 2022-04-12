@@ -2,20 +2,19 @@ package controller;
 
 import domain.LadderGame;
 import domain.Player;
+import domain.Players;
 import view.InputView;
-
-import java.util.List;
 
 public class Controller {
 
     public void run() {
-        List<Player> players = createPlayers();
-        for(Player player : players) {
+        Players players = createPlayers();
+        for(Player player : players.getPlayers()) {
             System.out.println(player.getName());
         }
     }
 
-    public List<Player> createPlayers() {
+    public Players createPlayers() {
         String playerNames;
 
         playerNames = InputView.getPlayerNamesInput();
