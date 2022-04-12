@@ -10,22 +10,22 @@ public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public String getPlayerNamesInput() {
+    public static String getPlayerNamesInput() {
         System.out.println(PLAYER_NAMES_INPUT_MESSAGE);
         return scanner.next();
     }
 
-    public String getGameResultInput() {
+    public static String getGameResultInput() {
         System.out.println(GAME_RESULT_INPUT_MESSAGE);
         return scanner.next();
     }
 
-    public String getMaxLadderHeight() {
+    public static String getMaxLadderHeight() {
         System.out.println(MAX_LADDER_HEIGHT_INPUT_MESSAGE);
         return scanner.next();
     }
 
-    public String getResultToSee() {
+    public static String getResultToSee() {
         System.out.println(RESULT_TO_SEE_INPUT_MESSAGE);
         return scanner.next();
     }
