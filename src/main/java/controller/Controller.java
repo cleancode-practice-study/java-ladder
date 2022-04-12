@@ -4,6 +4,7 @@ import domain.LadderGame;
 import domain.Player;
 import domain.Players;
 import view.InputView;
+import view.OutputView;
 
 public class Controller {
 
@@ -17,9 +18,18 @@ public class Controller {
     public Players createPlayers() {
         String playerNames;
 
-        playerNames = InputView.getPlayerNamesInput();
+        do {
+            playerNames = InputView.getPlayerNamesInput();
+            checkInputNames(playerNames);
+        } while (!playerNames.contains(","));
 
         return LadderGame.getParticipantsByNames(playerNames);
+    }
+
+    private void checkInputNames(String names) {
+        if (!names.contains(",")) {
+            OutputView.printInputNamesErrorMessage();
+        }
     }
 }
 
