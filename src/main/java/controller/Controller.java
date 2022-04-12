@@ -4,29 +4,27 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.List;
+
 public class Controller {
+    private final static int PLAYER_NAME_LIMIT = 6;
 
     public void run() {
         Players players = createPlayers();
         Outputs outputs = createOutputs(players);
 
-        for (Player player : players.getPlayers()) {
-            System.out.println(player.getName());
-        }
-
-        for (Output output : outputs.getOutputs()) {
-            System.out.println(output.getOutputName());
-        }
     }
 
     public Players createPlayers() {
         String playerNames;
         boolean isContainComma;
+        boolean isUnderFiveLetter;
 
         do {
             playerNames = InputView.getPlayerNamesInput();
             isContainComma = checkContainComma(playerNames);
-        } while (!isContainComma);
+            isUnderFiveLetter = checkUnderFiveLetter(playerNames);
+        } while (!isContainComma || !isUnderFiveLetter);
 
         return LadderGame.getParticipantsByNames(playerNames);
     }
@@ -37,6 +35,19 @@ public class Controller {
         }
 
         OutputView.printInputNamesErrorMessage();
+        return false;
+    }
+
+    private boolean checkUnderFiveLetter(String names) {
+        List<String> playerNames = LadderGame.splitNames(names);
+
+        boolean isUnderFiveLetter = playerNames.stream().allMatch(name -> name.length() < PLAYER_NAME_LIMIT);
+
+        if (isUnderFiveLetter) {
+            return true;
+        }
+
+        OutputView.printInputNamesLimitErrorMessage();
         return false;
     }
 

@@ -18,7 +18,7 @@ public class LadderGame {
         return new Players(players);
     }
 
-    private static List<String> splitNames(String names) {
+    public static List<String> splitNames(String names) {
         String[] participantsNames = names.split(",");
         return new ArrayList<>(Arrays.asList(participantsNames));
     }
