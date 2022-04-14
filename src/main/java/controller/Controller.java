@@ -1,6 +1,7 @@
 package main.java.controller;
 
 import main.java.model.Convert;
+import main.java.model.Line;
 import main.java.model.Players;
 import main.java.view.InputView;
 import main.java.view.OutputView;
