@@ -14,7 +14,7 @@ public class Controller {
         Outputs outputs = createOutputs(players);
 
         Ladder ladder = createLadder(players.getPlayerCount());
-
+        ladder.printLadder();
     }
 
     public Players createPlayers() {
@@ -81,7 +81,13 @@ public class Controller {
     private Ladder createLadder(int playerCount) {
         int maxLadderHeight = Integer.parseInt(InputView.getMaxLadderHeight());
 
-        return new Ladder(maxLadderHeight, playerCount);
+        Ladder ladder;
+
+        do {
+            ladder = new Ladder(maxLadderHeight, playerCount);
+        } while (!ladder.checkLadder());
+
+        return ladder;
     }
 }
 

@@ -14,6 +14,41 @@ public class Ladder {
         }
     }
 
+    public void printLadder() {
+        for (Line line : lines) {
+            System.out.print("|");
+            for (Boolean bool : line.getLine()) {
+                if (bool) {
+                    System.out.print("-----");
+                } else {
+                    System.out.print("     ");
+                }
+                System.out.print("|");
+            }
+            System.out.println();
+        }
+    }
+
+    public boolean checkLadder() {
+        int rootCount = 0;
+        int lineLength = lines.get(0).getLine().size();
+
+        for (int i = 0 ; i < lineLength ; i++) {
+            for (int j = 0 ; j < lines.size() ; j++) {
+                Line line = lines.get(j);
+                if (line.getLine().get(i)) {
+                    rootCount++;
+                }
+            }
+
+            if (rootCount == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public List<Line> getLines() {
         return lines;
     }
