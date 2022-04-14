@@ -30,16 +30,11 @@ public class Ladder {
     }
 
     public boolean checkLadder() {
-        int rootCount = 0;
-        int lineLength = lines.get(0).getLine().size();
+        int rootCount;
+        int lineRowLength = lines.get(0).getLine().size();
 
-        for (int i = 0 ; i < lineLength ; i++) {
-            for (int j = 0 ; j < lines.size() ; j++) {
-                Line line = lines.get(j);
-                if (line.getLine().get(i)) {
-                    rootCount++;
-                }
-            }
+        for (int i = 0 ; i < lineRowLength ; i++) {
+            rootCount = getRootCount(i);
 
             if (rootCount == 0) {
                 return false;
@@ -47,6 +42,17 @@ public class Ladder {
         }
 
         return true;
+    }
+
+    private int getRootCount(int columnIndex) {
+        int rootCount = 0;
+
+        for (Line line : lines) {
+            if (line.getLine().get(columnIndex)) {
+                rootCount++;
+            }
+        }
+        return rootCount;
     }
 
     public List<Line> getLines() {
