@@ -8,4 +8,10 @@ public class Validator {
         }
         return true;
     }
+
+    public static boolean isPlayersLength(String[] names) {
+        if (names.length < 2)
+            return false;
+        return true;
+    }
 }

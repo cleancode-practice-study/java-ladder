@@ -42,12 +42,13 @@ public class OutputView {
 
     private static void printPlayersNames(Players players) {
         for (int i = 0; i < players.getPlayers().size(); i++)
-            System.out.print(" " + players.getPlayers().get(i).getName() + "  ");
+            System.out.printf("%-8s", players.getPlayers().get(i).getName());
     }
 
     private static void printLadderResults(Results results) {
-        for (int i = 0; i < results.getResults().size(); i++)
-            System.out.print(" " + results.getResults().get(i).getPrize() + "  ");
+        for (int i = 0; i < results.getResults().size(); i++) {
+            System.out.printf("%-8s", results.getResults().get(i).getPrize());
+        }
     }
 
     public static void printPlayersAndLadderAndResults(Players players, Ladder ladder, Results results) {
@@ -55,7 +56,7 @@ public class OutputView {
         printPlayersNames(players);
         System.out.println(" ");
         for (Line line : ladder.getLadder()) {
-            System.out.print("   ");
+            System.out.print("  ");
             OutputView.printLine(line.getPoints());
             System.out.println("");
         }
@@ -64,5 +65,9 @@ public class OutputView {
 
     public static void printPlayerNameLengthErrorMessage() {
         System.out.println("이름은 최대 5글자까지 입력할 수 있습니다. 다시 입력 해 주세요. \n");
+    }
+
+    public static void printPlayersLengthErrorMessage() {
+        System.out.println("두명 이상 입력 해 주세요. \n");
     }
 }

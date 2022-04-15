@@ -11,16 +11,22 @@ public class LadderGame {
     }
 
     private static Players createPlayers() {
-        String[] names = inputPlayersNames(); // 참여할 사람 이름 입력받기
-        boolean check;
+        String[] names; // 참여할 사람 이름 입력받기
+        boolean nameLength;
+        boolean playersLength;
 
         do {
-            check = Validator.isPlayerNameLength(names);
-            if (!check) {
-                OutputView.printPlayerNameLengthErrorMessage();
-                names = inputPlayersNames();
+            names = inputPlayersNames();
+            nameLength = Validator.isPlayerNameLength(names);
+            playersLength = Validator.isPlayersLength(names);
+
+            if (!nameLength || !playersLength) {
+                if (!nameLength)
+                    OutputView.printPlayerNameLengthErrorMessage();
+                else
+                    OutputView.printPlayersLengthErrorMessage();
             }
-        } while (!check);
+        } while (!nameLength || !playersLength);
 
         return new Players(names);
     }
