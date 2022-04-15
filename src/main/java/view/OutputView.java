@@ -44,7 +44,7 @@ public class OutputView {
             System.out.print(" " + players.getPlayers().get(i).getName() + "  ");
     }
 
-    public static void printPlayersAndLadder(Players players, Ladder ladder) {
+    public static void printPlayersAndLadderAndPrize(Players players, Ladder ladder) {
         printPlayersNames(players);
         System.out.println(" ");
         for (Line line : ladder.getLadder()) {
