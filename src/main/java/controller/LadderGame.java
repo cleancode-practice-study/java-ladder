@@ -2,22 +2,13 @@ package main.java.controller;
 
 import main.java.model.Convert;
 import main.java.model.Ladder;
-import main.java.model.Line;
 import main.java.model.Players;
 import main.java.view.InputView;
 import main.java.view.OutputView;
 
 public class LadderGame {
-    public void play() {
-        Players players = createPlayers();
-        String results = inputLadderResults();
-        int maxHeight = inputLadderMaxHeight();
-        Ladder ladder = new Ladder(players.getPlayers().size(), maxHeight);
-        OutputView.printLadder(ladder);
-    }
-
     private static Players createPlayers() {
-        String[] names = inputPlayersNames();
+        String[] names = inputPlayersNames(); // 참여할 사람 이름 입력받기
         return new Players(names);
     }
 
@@ -27,12 +18,24 @@ public class LadderGame {
         return Convert.splitNames(names);
     }
 
-    private int inputLadderMaxHeight() {
-        OutputView.printMaxHeightInputMessage();
+    private static Ladder createLadder(int width, int height) {
+        return new Ladder(width, height);
+    }
+
+    public void play() {
+        Players players = createPlayers();
+        String prizes = inputPrizes();
+        int maxHeight = inputMaxHeight();
+        Ladder ladder = createLadder(players.getPlayers().size(), maxHeight);
+        OutputView.printPlayersAndLadder(players, ladder);
+    }
+
+    private int inputMaxHeight() {
+        OutputView.printMaxHeightQuestionMessage();
         return InputView.inputMaxHeight();
     }
 
-    private String inputLadderResults() {
+    private String inputPrizes() {
         OutputView.printLadderResultsInputMessage();
         return InputView.inputLadderResults();
     }
