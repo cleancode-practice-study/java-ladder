@@ -3,6 +3,7 @@ package main.java.view;
 import main.java.model.Ladder;
 import main.java.model.Line;
 import main.java.model.Players;
+import main.java.model.Results;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,13 @@ public class OutputView {
             System.out.print(" " + players.getPlayers().get(i).getName() + "  ");
     }
 
-    public static void printPlayersAndLadderAndPrize(Players players, Ladder ladder) {
+    private static void printLadderResults(Results results) {
+        for (int i = 0; i < results.getResults().size(); i++)
+            System.out.print(" " + results.getResults().get(i).getPrize() + "  ");
+    }
+
+    public static void printPlayersAndLadderAndResults(Players players, Ladder ladder, Results results) {
+        System.out.println("사다리 결과");
         printPlayersNames(players);
         System.out.println(" ");
         for (Line line : ladder.getLadder()) {
@@ -52,5 +59,10 @@ public class OutputView {
             OutputView.printLine(line.getPoints());
             System.out.println("");
         }
+        printLadderResults(results);
+    }
+
+    public static void printPlayerNameLengthErrorMessage() {
+        System.out.println("이름은 최대 5글자까지 입력할 수 있습니다. 다시 입력 해 주세요. \n");
     }
 }

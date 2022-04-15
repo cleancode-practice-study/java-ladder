@@ -1,9 +1,6 @@
 package main.java.controller;
 
-import main.java.model.Convert;
-import main.java.model.Ladder;
-import main.java.model.Players;
-import main.java.model.Results;
+import main.java.model.*;
 import main.java.view.InputView;
 import main.java.view.OutputView;
 
@@ -15,6 +12,16 @@ public class LadderGame {
 
     private static Players createPlayers() {
         String[] names = inputPlayersNames(); // 참여할 사람 이름 입력받기
+        boolean check;
+
+        do {
+            check = Validator.isPlayerNameLength(names);
+            if (!check) {
+                OutputView.printPlayerNameLengthErrorMessage();
+                names = inputPlayersNames();
+            }
+        } while (!check);
+
         return new Players(names);
     }
 
@@ -41,9 +48,9 @@ public class LadderGame {
 
     public void play() {
         Players players = createPlayers();
+        Results results = createResults();
         int maxHeight = inputMaxHeight();
         Ladder ladder = createLadder(players.getPlayers().size(), maxHeight);
-        Results results = createResults();
-        OutputView.printPlayersAndLadderAndPrize(players, ladder);
+        OutputView.printPlayersAndLadderAndResults(players, ladder, results);
     }
 }

@@ -13,4 +13,8 @@ public class Results {
         }
     }
 
+    public List<Result> getResults() {
+        return results;
+    }
+
 }

@@ -6,4 +6,8 @@ public class Result {
     Result(String prize) {
         this.prize = prize;
     }
+
+    public String getPrize() {
+        return prize;
+    }
 }
