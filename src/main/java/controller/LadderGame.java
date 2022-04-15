@@ -5,30 +5,47 @@ import main.java.view.InputView;
 import main.java.view.OutputView;
 
 public class LadderGame {
-    private static Results createResults() {
-        String[] names = inputResults(); // 참여할 사람 이름 입력받기
+    private static Results createResults(Players players) {
+        String[] names;
+        boolean resultsLength;
+
+        do {
+            names = inputResults();
+            resultsLength = Validator.isValidResultsLength(names.length, players.getPlayers().size());
+            if (!resultsLength) {
+                OutputView.printResultsLengthErrorMessage(players);
+                names = inputResults();
+            }
+        } while (!resultsLength);
+
         return new Results(names);
     }
 
     private static Players createPlayers() {
-        String[] names; // 참여할 사람 이름 입력받기
+        String[] names;
         boolean nameLength;
         boolean playersLength;
 
         do {
             names = inputPlayersNames();
-            nameLength = Validator.isPlayerNameLength(names);
-            playersLength = Validator.isPlayersLength(names);
+            nameLength = Validator.isValidPlayerNameLength(names);
+            playersLength = Validator.isValidPlayersLength(names);
 
-            if (!nameLength || !playersLength) {
-                if (!nameLength)
-                    OutputView.printPlayerNameLengthErrorMessage();
-                else
-                    OutputView.printPlayersLengthErrorMessage();
-            }
+            checkPlayerLengthError(nameLength, playersLength);
         } while (!nameLength || !playersLength);
 
         return new Players(names);
+    }
+
+    private static void checkPlayerLengthError(boolean nameLength, boolean playersLength) {
+        if (!nameLength || !playersLength) {
+            if (!nameLength) {
+                OutputView.printPlayerNameLengthErrorMessage();
+                return;
+            }
+            OutputView.printPlayersLengthErrorMessage();
+
+        }
     }
 
     private static String[] inputPlayersNames() {
@@ -54,7 +71,7 @@ public class LadderGame {
 
     public void play() {
         Players players = createPlayers();
-        Results results = createResults();
+        Results results = createResults(players);
         int maxHeight = inputMaxHeight();
         Ladder ladder = createLadder(players.getPlayers().size(), maxHeight);
         OutputView.printPlayersAndLadderAndResults(players, ladder, results);

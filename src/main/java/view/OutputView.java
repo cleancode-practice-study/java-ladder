@@ -70,4 +70,8 @@ public class OutputView {
     public static void printPlayersLengthErrorMessage() {
         System.out.println("두명 이상 입력 해 주세요. \n");
     }
+
+    public static void printResultsLengthErrorMessage(Players players) {
+        System.out.println(players.getPlayers().size() + "개의 실행 결과를 입력 해 주세요. \n");
+    }
 }
