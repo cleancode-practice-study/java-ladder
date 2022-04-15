@@ -16,6 +16,13 @@ public class Line {
             this.points.add(randomBoolean.getBoolean());
             count++;
         }
+
+        for(int i = 0; i<points.size(); i++){
+            if(i != points.size() -1 && points.get(i)){
+                if(points.get(i+1))
+                    points.set(i+1, RandomBoolean.FALSE.getBoolean());
+            }
+        }
     }
 
     public ArrayList<Boolean> getPoints(){

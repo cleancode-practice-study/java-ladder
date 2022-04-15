@@ -1,11 +1,11 @@
 package main.java;
 
-import main.java.controller.Controller;
+import main.java.controller.LadderGame;
 
 public class Application {
     public static void main(String[] args) {
-        Controller controller = new Controller();
+        LadderGame ladderGame = new LadderGame();
 
-        controller.play();
+        ladderGame.play();
     }
 }
