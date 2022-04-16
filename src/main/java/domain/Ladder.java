@@ -14,21 +14,6 @@ public class Ladder {
         }
     }
 
-    public void printLadder() {
-        for (Line line : lines) {
-            System.out.print("|");
-            for (Boolean bool : line.getLine()) {
-                if (bool) {
-                    System.out.print("-----");
-                } else {
-                    System.out.print("     ");
-                }
-                System.out.print("|");
-            }
-            System.out.println();
-        }
-    }
-
     public boolean checkLadder() {
         int rootCount;
         int lineRowLength = lines.get(0).getLine().size();
