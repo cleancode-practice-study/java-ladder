@@ -6,12 +6,12 @@ import java.util.Map;
 public class GameResultCreator {
     private final Players players;
     private final Ladder ladder;
-    private final Results results;
+    private final Prizes prizes;
 
-    public GameResultCreator(Players players, Ladder ladder, Results results) {
+    public GameResultCreator(Players players, Ladder ladder, Prizes prizes) {
         this.players = players;
         this.ladder = ladder;
-        this.results = results;
+        this.prizes = prizes;
     }
 
     public Map<String, String> getGameResult() {
@@ -46,7 +46,7 @@ public class GameResultCreator {
                 }
             }
 
-            result.put(players.getPlayers().get(i).getName(), results.getResults().get(location).getPrize());
+            result.put(players.getPlayers().get(i).getName(), prizes.getPrizes().get(location).getPrize());
         }
 
         return result;

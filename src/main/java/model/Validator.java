@@ -2,10 +2,8 @@ package main.java.model;
 
 public class Validator {
     public static boolean isValidPlayerNameLength(String[] names) {
-        for (String name : names) {
-            if (name.length() > 5)
-                return false;
-        }
+        for (String name : names)
+            if (name.length() > 5) return false;
         return true;
     }
 
@@ -16,4 +14,5 @@ public class Validator {
     public static boolean isValidResultCount(int resultsLength, int playersLength) {
         return resultsLength == playersLength;
     }
+
 }

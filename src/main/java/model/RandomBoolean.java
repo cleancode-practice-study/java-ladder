@@ -17,7 +17,7 @@ public enum RandomBoolean {
 
     public static RandomBoolean getRandomBoolean(int idx){
         return Arrays.stream(RandomBoolean.values())
-                .filter(r -> r.idx == idx)
+                .filter(bool -> bool.idx == idx)
                 .findAny()
                 .orElse(null);
     }

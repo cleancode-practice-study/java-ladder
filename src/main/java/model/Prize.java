@@ -1,9 +1,9 @@
 package main.java.model;
 
-public class Result {
+public class Prize {
     private final String prize;
 
-    Result(String prize) {
+    public Prize(String prize) {
         this.prize = prize;
     }
 

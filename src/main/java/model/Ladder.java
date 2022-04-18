@@ -14,20 +14,16 @@ public class Ladder {
         this.ladderHorizontals = createLadder(width, height);
     }
 
-    private int[] getLineCounts(List<Line> lines) {
-        int[] count = new int[width - 1];
+    public List<Line> getLadder() {
+        return ladderHorizontals;
+    }
 
-        for (int i = 0; i < width - 1; i++) {
-            count[i] = 0;
-            for (int j = 0; j < height; j++) {
-                Line line = lines.get(j);
-                List<Boolean> points = line.getPoints();
-                if (points.get(i))
-                    count[i]++;
-            }
-        }
+    public int getWidth() {
+        return this.width;
+    }
 
-        return count;
+    public int getHeight() {
+        return this.height;
     }
 
     private List<Line> createLadder(int width, int height) {
@@ -43,31 +39,31 @@ public class Ladder {
 
             boolean replay = true;
             for (int i : count) {
-                if (i != 0)
-                    replay = false;
+                if (i != 0) replay = false;
                 else {
                     replay = true;
                     break;
                 }
             }
 
-            if (!replay)
-                break;
-
+            if (!replay) break;
         }
 
         return ladderLines;
     }
 
-    public List<Line> getLadder() {
-        return ladderHorizontals;
-    }
+    private int[] getLineCounts(List<Line> lines) {
+        int[] count = new int[width - 1];
 
-    public int getWidth() {
-        return this.width;
-    }
+        for (int i = 0; i < width - 1; i++) {
+            count[i] = 0;
+            for (int j = 0; j < height; j++) {
+                Line line = lines.get(j);
+                List<Boolean> points = line.getPoints();
+                if (points.get(i)) count[i]++;
+            }
+        }
 
-    public int getHeight() {
-        return this.height;
+        return count;
     }
 }

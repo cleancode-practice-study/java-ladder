@@ -7,23 +7,34 @@ import main.java.view.OutputView;
 public class LadderGame {
     public void play() {
         Players players = createPlayers();
-        Results results = createResults(players);
+        Prizes prizes = createResults(players);
+        int width = players.getPlayersCount();
         int height = inputHeight();
-        Ladder ladder = createLadder(players.getPlayerCount(), height);
-        OutputView.printLadder(players, ladder, results);
+        Ladder ladder = createLadder(width, height);
+        OutputView.printLadder(players, ladder, prizes);
+        GameResult gameResult = createGameResult(players, ladder, prizes);
+        askAndPrintPlayerResult(gameResult);
+    }
 
-        GameResult gameResult = getGameResult(players, ladder, results);
-
-        String name;
+    private void askAndPrintPlayerResult(GameResult gameResult) {
         do {
-            name = InputView.inputPeopleResultRequest();
+            String name = InputView.inputPeopleResultRequest();
             if (name.equals("all"))
                 break;
 
-            OutputView.printPeopleResult(gameResult.getGameResult().get(name));
-        } while (!name.equals("all"));
+            printPlayerResult(gameResult, name);
+        } while (true);
 
         OutputView.printAllPeopleResult(gameResult);
+    }
+
+    private void printPlayerResult(GameResult gameResult, String name) {
+        if (gameResult.getGameResult().get(name) == null) {
+            OutputView.printResultErrorMessage();
+            return;
+        }
+
+        OutputView.printPeopleResult(gameResult, name);
     }
 
     private Players createPlayers() {
@@ -43,37 +54,35 @@ public class LadderGame {
     }
 
     private void checkPlayerLengthError(boolean nameLength, boolean playersLength) {
-        if (!nameLength || !playersLength) {
-            if (!nameLength) {
-                OutputView.printPlayerNameLengthErrorMessage();
-                return;
-            }
-
-            OutputView.printPlayersLengthErrorMessage();
+        if (!nameLength) {
+            OutputView.printPlayerNameLengthErrorMessage();
+            return;
         }
+
+        if (!playersLength) OutputView.printPlayersLengthErrorMessage();
     }
 
-    private Results createResults(Players players) {
+    private Prizes createResults(Players players) {
         String[] names;
         boolean resultsLength;
 
         do {
             names = inputResults();
-            resultsLength = Validator.isValidResultCount(names.length, players.getPlayerCount());
+            resultsLength = Validator.isValidResultCount(names.length, players.getPlayersCount());
             if (!resultsLength)
                 OutputView.printResultsLengthErrorMessage(players);
         } while (!resultsLength);
 
-        return new Results(names);
+        return new Prizes(names);
     }
 
     private Ladder createLadder(int width, int height) {
         return new Ladder(width, height);
     }
 
-    private GameResult getGameResult(Players players, Ladder ladder, Results results) {
-        GameResultCreator gameResultCreator = new GameResultCreator(players, ladder, results);
-        return new GameResult(gameResultCreator);
+    private GameResult createGameResult(Players players, Ladder ladder, Prizes prizes) {
+        GameResultCreator gameResult = new GameResultCreator(players, ladder, prizes);
+        return new GameResult(gameResult);
     }
 
     private String[] inputPlayersNames() {
