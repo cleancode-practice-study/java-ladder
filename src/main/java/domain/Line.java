@@ -8,7 +8,7 @@ public class Line {
     public Line (int playerCount) {
         addRoot(RandomRootCreator.getRandomRoot());
 
-        for (int i = 1 ; i < playerCount ; i++) {
+        for (int i = 1 ; i < playerCount - 1 ; i++) {
             boolean previousRoot = points.get(i - 1);
             addRoot(previousRoot);
         }
