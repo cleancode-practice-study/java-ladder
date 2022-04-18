@@ -14,7 +14,7 @@ public class Ladder {
         this.ladderHorizontals = createLadder(width, height);
     }
 
-    private int[] getLineCount(List<Line> lines) {
+    private int[] getLineCounts(List<Line> lines) {
         int[] count = new int[width - 1];
 
         for (int i = 0; i < width - 1; i++) {
@@ -39,7 +39,7 @@ public class Ladder {
             for (int i = 0; i < height; i++)
                 ladderLines.add(new Line(width));
 
-            int[] count = getLineCount(ladderLines);
+            int[] count = getLineCounts(ladderLines);
 
             boolean replay = true;
             for (int i : count) {
