@@ -26,30 +26,36 @@ public class Ladder {
         return this.height;
     }
 
+    private List<Line> getLines(int width, int height) {
+        List<Line> lines = new ArrayList<>();
+
+        for (int i = 0; i < height; i++)
+            lines.add(new Line(width));
+
+        return lines;
+    }
+
     private List<Line> createLadder(int width, int height) {
-        List<Line> Lines;
+        List<Line> lines;
 
         while (true) {
-            Lines = new ArrayList<>();
+            lines = getLines(width, height);
 
-            for (int i = 0; i < height; i++)
-                Lines.add(new Line(width));
-
-            int[] count = getLinesCount(Lines);
+            int[] count = getLinesCount(lines);
 
             boolean replay = true;
             for (int i : count) {
-                if (i != 0) replay = false;
-                else {
+                if (i == 0) {
                     replay = true;
                     break;
                 }
+                replay = false;
             }
 
             if (!replay) break;
         }
 
-        return Lines;
+        return lines;
     }
 
     private int[] getLinesCount(List<Line> lines) {
