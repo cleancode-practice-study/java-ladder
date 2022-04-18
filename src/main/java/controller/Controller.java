@@ -15,7 +15,7 @@ public class Controller {
 
         Ladder ladder = createLadder(players.getPlayerCount());
 
-        OutputView.ladderResultMessage(players, ladder);
+        OutputView.ladderResultMessage(players, ladder, outputs);
     }
 
     public Players createPlayers() {

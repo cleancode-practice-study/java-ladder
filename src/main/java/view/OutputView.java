@@ -22,13 +22,17 @@ public class OutputView {
         System.out.println(INPUT_NAMES_LIMIT_ERROR_MESSAGE);
     }
 
-    public static void ladderResultMessage(Players players, Ladder ladder) {
+    public static void ladderResultMessage(Players players, Ladder ladder, Outputs outputs) {
         String names = getPlayerNames(players);
+        String outputNames = getOutputNames(outputs);
+
         System.out.println();
         System.out.println(LADDER_RESULT_MESSAGE);
         System.out.println();
+
         System.out.println(names);
         printLadder(ladder);
+        System.out.println(outputNames);
     }
 
     private static String getPlayerNames(Players players) {
@@ -50,5 +54,10 @@ public class OutputView {
             }
             System.out.println();
         }
+    }
+
+    private static String getOutputNames(Outputs outputs) {
+        List<String> outputNames = outputs.getOutputNames();
+        return String.join(" ", outputNames);
     }
 }
