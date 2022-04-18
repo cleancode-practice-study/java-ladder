@@ -23,27 +23,29 @@ public class OutputView {
     }
 
     public static void ladderResultMessage(Players players, Ladder ladder, Outputs outputs) {
-        String names = getPlayerNames(players);
-        String outputNames = getOutputNames(outputs);
-
         System.out.println();
         System.out.println(LADDER_RESULT_MESSAGE);
         System.out.println();
 
-        System.out.println(names);
+        printPlayerNames(players);
         printLadder(ladder);
-        System.out.println(outputNames);
+        printOutputNames(outputs);
     }
 
-    private static String getPlayerNames(Players players) {
+    private static void printPlayerNames(Players players) {
         List<String> names = players.getPlayerNames();
-        return String.join(" ", names);
+
+        for (String name : names) {
+            System.out.printf("%-7s", name);
+        }
+
+        System.out.println();
     }
 
     private static void printLadder(Ladder ladder) {
         List<Line> lines = ladder.getLines();
         for (Line line : lines) {
-            System.out.print("|");
+            System.out.print("    |");
             for (Boolean bool : line.getLine()) {
                 if (bool) {
                     System.out.print("-----");
@@ -56,8 +58,13 @@ public class OutputView {
         }
     }
 
-    private static String getOutputNames(Outputs outputs) {
+    private static void printOutputNames(Outputs outputs) {
         List<String> outputNames = outputs.getOutputNames();
-        return String.join(" ", outputNames);
+
+        for (String name : outputNames) {
+            System.out.printf("%-7s", name);
+        }
+
+        System.out.println();
     }
 }
