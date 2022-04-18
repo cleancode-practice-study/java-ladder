@@ -9,11 +9,11 @@ public class Validator {
         return true;
     }
 
-    public static boolean isValidPlayersLength(String[] names) {
+    public static boolean isValidPlayerCount(String[] names) {
         return names.length >= 2;
     }
 
-    public static boolean isValidResultsLength(int resultsLength, int playersLength) {
+    public static boolean isValidResultCount(int resultsLength, int playersLength) {
         return resultsLength == playersLength;
     }
 }

@@ -4,6 +4,8 @@ import main.java.model.*;
 import main.java.view.InputView;
 import main.java.view.OutputView;
 
+import java.util.Map;
+
 public class LadderGame {
     public void play() {
         Players players = createPlayers();
@@ -11,6 +13,10 @@ public class LadderGame {
         int maxHeight = inputMaxHeight();
         Ladder ladder = createLadder(players.getPlayerCount(), maxHeight);
         OutputView.printPlayersAndLadderAndResults(players, ladder, results);
+
+        ResultCreator resultCreator = new ResultCreator(players, ladder, results);
+        Map<String, String> result = resultCreator.getGameResult();
+        System.out.println(result);
     }
 
     private Results createResults(Players players) {
@@ -19,7 +25,7 @@ public class LadderGame {
 
         do {
             names = inputResults();
-            resultsLength = Validator.isValidResultsLength(names.length, players.getPlayerCount());
+            resultsLength = Validator.isValidResultCount(names.length, players.getPlayerCount());
             if (!resultsLength)
                 OutputView.printResultsLengthErrorMessage(players);
         } while (!resultsLength);
@@ -41,15 +47,15 @@ public class LadderGame {
     private Players createPlayers() {
         String[] names;
         boolean nameLength;
-        boolean playersLength;
+        boolean playerCount;
 
         do {
             names = inputPlayersNames();
             nameLength = Validator.isValidPlayerNameLength(names);
-            playersLength = Validator.isValidPlayersLength(names);
+            playerCount = Validator.isValidPlayerCount(names);
 
-            checkPlayerLengthError(nameLength, playersLength);
-        } while (!nameLength || !playersLength);
+            checkPlayerLengthError(nameLength, playerCount);
+        } while (!nameLength || !playerCount);
 
         return new Players(names);
     }

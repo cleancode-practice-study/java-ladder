@@ -62,4 +62,12 @@ public class Ladder {
     public List<Line> getLadder() {
         return ladderHorizontals;
     }
+
+    public int getWidth() {
+        return this.width;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
 }
