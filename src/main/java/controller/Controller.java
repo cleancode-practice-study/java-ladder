@@ -16,6 +16,9 @@ public class Controller {
         Ladder ladder = createLadder(players.getPlayerCount());
 
         OutputView.ladderResultMessage(players, ladder, outputs);
+
+        GameResult gameResult = LadderGame.getGameResult(ladder, players, outputs);
+        gameResult.printResult();
     }
 
     public Players createPlayers() {
