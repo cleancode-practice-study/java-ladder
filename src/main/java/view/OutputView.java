@@ -9,6 +9,7 @@ public class OutputView {
     private static final String INPUT_RESULT_ERROR_MESSAGE = "[ERROR] 참가자의 수와 동일한 수로 입력해주십시오.";
     private static final String INPUT_NAMES_LIMIT_ERROR_MESSAGE = "[ERROR] 참가자의 이름은 5자 이하로 입력해주십시오.";
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
+    private static final String GAME_RESULT_MESSAGE = "실행 결과";
 
     public static void printInputNamesErrorMessage() {
         System.out.println(INPUT_NAMES_ERROR_MESSAGE);
@@ -30,6 +31,7 @@ public class OutputView {
         printPlayerNames(players);
         printLadder(ladder);
         printOutputNames(outputs);
+        System.out.println();
     }
 
     private static void printPlayerNames(Players players) {
@@ -65,6 +67,13 @@ public class OutputView {
             System.out.printf("%-7s", name);
         }
 
+        System.out.println();
+    }
+
+    public static void printGameResult(Player player, GameResult gameResult) {
+        System.out.println();
+        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.println(gameResult.getResult(player));
         System.out.println();
     }
 }

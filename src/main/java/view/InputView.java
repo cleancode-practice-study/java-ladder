@@ -25,7 +25,7 @@ public class InputView {
         return scanner.next();
     }
 
-    public static String getResultToSee() {
+    public static String printWhichPersonToBeSeen() {
         System.out.println(RESULT_TO_SEE_INPUT_MESSAGE);
         return scanner.next();
     }

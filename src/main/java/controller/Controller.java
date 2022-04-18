@@ -18,7 +18,8 @@ public class Controller {
         OutputView.ladderResultMessage(players, ladder, outputs);
 
         GameResult gameResult = LadderGame.getGameResult(ladder, players, outputs);
-        gameResult.printResult();
+
+        printGameResults(gameResult, players);
     }
 
     public Players createPlayers() {
@@ -86,6 +87,17 @@ public class Controller {
         int maxLadderHeight = Integer.parseInt(InputView.getMaxLadderHeight());
 
         return LadderGame.getLadder(playerCount, maxLadderHeight);
+    }
+
+    private void printGameResults(GameResult gameResult, Players players) {
+        boolean loop = true;
+
+        while (loop) {
+            String playerName = InputView.printWhichPersonToBeSeen();
+            Player player = LadderGame.findPlayer(playerName, players);
+
+            OutputView.printGameResult(player, gameResult);
+        }
     }
 }
 

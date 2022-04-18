@@ -90,4 +90,14 @@ public class LadderGame {
 
         return ladder;
     }
+
+    public static Player findPlayer(String playerName, Players players) {
+        for (Player player : players.getPlayers()) {
+            if (player.getName().equals(playerName)) {
+                return player;
+            }
+        }
+
+        return null;
+    }
 }

@@ -9,9 +9,7 @@ public class GameResult {
         this.gameResult = gameResult;
     }
 
-    public void printResult() {
-        for (Player player : gameResult.keySet()) {
-            System.out.println(player.getName() + " : " + gameResult.get(player).getOutputName());
-        }
+    public String getResult(Player player) {
+        return gameResult.get(player).getOutputName();
     }
 }
