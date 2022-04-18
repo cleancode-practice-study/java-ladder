@@ -5,7 +5,7 @@ import main.java.model.Line;
 import main.java.model.Players;
 import main.java.model.Results;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class OutputView {
     public static void printPlayersNamesInputMessage() {
@@ -24,7 +24,7 @@ public class OutputView {
         System.out.println("결과를 보고 싶은 사람은?");
     }
 
-    private static void printLine(ArrayList<Boolean> points) {
+    private static void printLine(List<Boolean> points) {
         for (int i = 0; i < points.size(); i++) {
             if (i != points.size() - 1) {
                 if (points.get(i))

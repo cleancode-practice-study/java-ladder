@@ -4,6 +4,8 @@ import main.java.model.*;
 import main.java.view.InputView;
 import main.java.view.OutputView;
 
+import java.util.List;
+
 public class LadderGame {
     private static Results createResults(Players players) {
         String[] names;
@@ -12,13 +14,22 @@ public class LadderGame {
         do {
             names = inputResults();
             resultsLength = Validator.isValidResultsLength(names.length, players.getPlayers().size());
-            if (!resultsLength) {
+            if (!resultsLength)
                 OutputView.printResultsLengthErrorMessage(players);
-                names = inputResults();
-            }
         } while (!resultsLength);
 
         return new Results(names);
+    }
+
+    private static void checkPlayerLengthError(boolean nameLength, boolean playersLength) {
+        if (!nameLength || !playersLength) {
+            if (!nameLength) {
+                OutputView.printPlayerNameLengthErrorMessage();
+                return;
+            }
+
+            OutputView.printPlayersLengthErrorMessage();
+        }
     }
 
     private static Players createPlayers() {
@@ -37,15 +48,13 @@ public class LadderGame {
         return new Players(names);
     }
 
-    private static void checkPlayerLengthError(boolean nameLength, boolean playersLength) {
-        if (!nameLength || !playersLength) {
-            if (!nameLength) {
-                OutputView.printPlayerNameLengthErrorMessage();
-                return;
-            }
-            OutputView.printPlayersLengthErrorMessage();
-
-        }
+    public void play() {
+        Players players = createPlayers();
+        Results results = createResults(players);
+        int maxHeight = inputMaxHeight();
+        List<Player> player = players.getPlayers();
+        Ladder ladder = createLadder(player.size(), maxHeight);
+        OutputView.printPlayersAndLadderAndResults(players, ladder, results);
     }
 
     private static String[] inputPlayersNames() {
@@ -67,13 +76,5 @@ public class LadderGame {
     private int inputMaxHeight() {
         OutputView.printMaxHeightQuestionMessage();
         return InputView.inputMaxHeight();
-    }
-
-    public void play() {
-        Players players = createPlayers();
-        Results results = createResults(players);
-        int maxHeight = inputMaxHeight();
-        Ladder ladder = createLadder(players.getPlayers().size(), maxHeight);
-        OutputView.printPlayersAndLadderAndResults(players, ladder, results);
     }
 }
