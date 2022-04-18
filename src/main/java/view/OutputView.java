@@ -1,7 +1,6 @@
 package view;
 
-import domain.Ladder;
-import domain.Line;
+import domain.*;
 
 import java.util.List;
 
@@ -23,11 +22,18 @@ public class OutputView {
         System.out.println(INPUT_NAMES_LIMIT_ERROR_MESSAGE);
     }
 
-    public static void ladderResultMessage(Ladder ladder) {
+    public static void ladderResultMessage(Players players, Ladder ladder) {
+        String names = getPlayerNames(players);
         System.out.println();
         System.out.println(LADDER_RESULT_MESSAGE);
         System.out.println();
+        System.out.println(names);
         printLadder(ladder);
+    }
+
+    private static String getPlayerNames(Players players) {
+        List<String> names = players.getPlayerNames();
+        return String.join(" ", names);
     }
 
     private static void printLadder(Ladder ladder) {

@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Players {
     final List<Player> players;
@@ -15,5 +16,12 @@ public class Players {
 
     public int getPlayerCount() {
         return players.size();
+    }
+
+    public List<String> getPlayerNames() {
+        return players
+                .stream()
+                .map(Player::getName)
+                .collect(Collectors.toList());
     }
 }
