@@ -1,23 +1,20 @@
 package main.java.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Players {
-    private final List<Player> players;
+    private final List<String> players;
 
     public Players(String[] names) {
-        List<Player> players = new ArrayList<>();
+        List<String> player = new ArrayList<>();
+        Collections.addAll(player, names);
 
-        for (String name : names) {
-            Player player = new Player(name);
-            players.add(player);
-        }
-
-        this.players = players;
+        this.players = player;
     }
 
-    public List<Player> getPlayers() {
+    public List<String> getPlayers() {
         return this.players;
     }
 

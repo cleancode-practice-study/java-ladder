@@ -25,15 +25,13 @@ public class GameResultCreator {
                     if (ladder.getLadder().get(height).getPoints().get(location)) {
                         location++;
                         height++;
-                    } else
-                        height++;
+                    } else height++;
 
                 } else if (location == ladder.getWidth() - 1) {
                     if (ladder.getLadder().get(height).getPoints().get(location - 1)) {
                         location--;
                         height++;
-                    } else
-                        height++;
+                    } else height++;
                 } else {
                     if (ladder.getLadder().get(height).getPoints().get(location - 1)) { // 사다리에서 왼쪽 line
                         location--;
@@ -41,12 +39,11 @@ public class GameResultCreator {
                     } else if (ladder.getLadder().get(height).getPoints().get(location)) { // 사다리에서 오른쪽 line
                         location++;
                         height++;
-                    } else
-                        height++;
+                    } else height++;
                 }
             }
 
-            result.put(players.getPlayers().get(i).getName(), prizes.getPrizes().get(location).getPrize());
+            result.put(players.getPlayers().get(i), prizes.getPrizes().get(location));
         }
 
         return result;

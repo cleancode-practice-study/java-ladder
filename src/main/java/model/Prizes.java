@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Prizes {
-    private final List<Prize> prizes = new ArrayList<>();
+    private final List<String> prizes = new ArrayList<>();
 
     public Prizes(String[] names) {
-        for (String name : names) {
-            Prize prize = new Prize(name);
+        for (String prize : names) {
             prizes.add(prize);
         }
     }
 
-    public List<Prize> getPrizes() {
+    public List<String> getPrizes() {
         return prizes;
     }
 }
