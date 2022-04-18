@@ -17,7 +17,11 @@ public class Players {
         this.players = players;
     }
 
-    public List<Player> getPlayers(){
+    public List<Player> getPlayers() {
         return this.players;
+    }
+
+    public int getPlayerCount() {
+        return players.size();
     }
 }
