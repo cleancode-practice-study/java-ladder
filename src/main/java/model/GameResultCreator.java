@@ -3,12 +3,12 @@ package main.java.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResultCreator {
+public class GameResultCreator {
     private final Players players;
     private final Ladder ladder;
     private final Results results;
 
-    public ResultCreator(Players players, Ladder ladder, Results results) {
+    public GameResultCreator(Players players, Ladder ladder, Results results) {
         this.players = players;
         this.ladder = ladder;
         this.results = results;

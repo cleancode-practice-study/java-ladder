@@ -1,29 +1,10 @@
 package main.java.view;
 
-import main.java.model.Ladder;
-import main.java.model.Line;
-import main.java.model.Players;
-import main.java.model.Results;
+import main.java.model.*;
 
 import java.util.List;
 
 public class OutputView {
-    public static void printPlayersNamesInputMessage() {
-        System.out.println("참여할 사람 이름을 입력하세요. (이름은 쉼표(,)로 구분하세요)");
-    }
-
-    public static void printLadderResultsInputMessage() {
-        System.out.println("실행 결과를 입력하세요. (결과는 쉼표(,)로 구분하세요)");
-    }
-
-    public static void printMaxHeightQuestionMessage() {
-        System.out.println("최대 사다리 높이는 몇 개인가요?");
-    }
-
-    public static void printPersonQuestionMessage() {
-        System.out.println("결과를 보고 싶은 사람은?");
-    }
-
     private static void printLine(List<Boolean> points) {
         for (int i = 0; i < points.size(); i++) {
             if (i != points.size() - 1) {
@@ -46,12 +27,13 @@ public class OutputView {
     }
 
     private static void printLadderResults(Results results) {
-        for (int i = 0; i < results.getResults().size(); i++) {
+        for (int i = 0; i < results.getResults().size(); i++)
             System.out.printf("%-8s", results.getResults().get(i).getPrize());
-        }
+        System.out.println("");
+
     }
 
-    public static void printPlayersAndLadderAndResults(Players players, Ladder ladder, Results results) {
+    public static void printLadder(Players players, Ladder ladder, Results results) {
         System.out.println("사다리 결과");
         printPlayersNames(players);
         System.out.println(" ");
@@ -61,6 +43,7 @@ public class OutputView {
             System.out.println("");
         }
         printLadderResults(results);
+        System.out.println("");
     }
 
     public static void printPlayerNameLengthErrorMessage() {
@@ -73,5 +56,16 @@ public class OutputView {
 
     public static void printResultsLengthErrorMessage(Players players) {
         System.out.println(players.getPlayers().size() + "개의 실행 결과를 입력 해 주세요. \n");
+    }
+
+    public static void printPeopleResult(String name) {
+        System.out.println("\n실행 결과");
+        System.out.println(name + "\n");
+    }
+
+    public static void printAllPeopleResult(GameResult gameResult) {
+        System.out.println("\n실행 결과");
+        for (String key : gameResult.getGameResult().keySet())
+            System.out.println(key + " : " + gameResult.getGameResult().get(key));
     }
 }
