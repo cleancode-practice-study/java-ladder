@@ -18,7 +18,7 @@ public class Players {
         return this.players;
     }
 
-    public int getPlayersCount() {
+    public int getPlayerCount() {
         return players.size();
     }
 }

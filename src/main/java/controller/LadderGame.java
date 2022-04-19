@@ -8,34 +8,22 @@ public class LadderGame {
     public void play() {
         Players players = createPlayers();
         Prizes prizes = createPrizes(players);
-        int width = players.getPlayersCount();
+        int width = players.getPlayerCount();
         int height = inputHeight();
-        Ladder ladder = createLadder(width, height);
+        Ladder ladder = new Ladder(width, height);
 
         printLadder(players, ladder, prizes);
         GameResult gameResult = createGameResult(players, ladder, prizes);
         askAndPrintGameResult(gameResult);
     }
 
-    private void askAndPrintGameResult(GameResult gameResult) {
-        do {
-            String name = InputView.inputPeopleResultRequest();
-            if (name.equals("all"))
-                break;
-
-            printPlayerResult(gameResult, name);
-        } while (true);
-
-        OutputView.printAllPeopleResult(gameResult.getGameResult());
-    }
-
     private void printPlayerResult(GameResult gameResult, String name) {
         if (gameResult.getGameResult().get(name) == null) {
-            OutputView.printGameResultErrorMessage();
+            OutputView.printPlayerErrorMessage();
             return;
         }
 
-        OutputView.printPeopleResult(gameResult.getGameResult(), name);
+        OutputView.printOnePeopleGameResult(gameResult.getGameResult(), name);
     }
 
     private Players createPlayers() {
@@ -54,13 +42,20 @@ public class LadderGame {
         return new Players(names);
     }
 
+    private String[] inputPlayersNames() {
+        String names = InputView.inputPlayersNames();
+        return Convert.splitNames(names);
+    }
+
     private void checkPlayerLengthError(boolean nameLength, boolean playersLength) {
         if (!nameLength) {
             OutputView.printPlayerNameLengthErrorMessage();
             return;
         }
 
-        if (!playersLength) OutputView.printPlayersCountErrorMessage();
+        if (!playersLength) {
+            OutputView.printPlayerCountErrorMessage();
+        }
     }
 
     private Prizes createPrizes(Players players) {
@@ -68,30 +63,32 @@ public class LadderGame {
         boolean prizesCount;
 
         do {
-            names = inputResults();
-            prizesCount = Validator.isValidPrizesCount(names.length, players.getPlayersCount());
-            if (!prizesCount)
-                OutputView.printResultsCountErrorMessage(players.getPlayersCount());
+            names = inputPrizes();
+            prizesCount = Validator.isValidPrizesCount(names.length, players.getPlayerCount());
+            if (!prizesCount) {
+                OutputView.printPrizeCountErrorMessage(players.getPlayerCount());
+            }
         } while (!prizesCount);
 
         return new Prizes(names);
     }
 
-    private Ladder createLadder(int width, int height) {
-        return new Ladder(width, height);
+    private String[] inputPrizes() {
+        String prizes = InputView.inputPrizes();
+        return Convert.splitNames(prizes);
+    }
+
+    private int inputHeight() {
+        return InputView.inputHeight();
     }
 
     private void printLadder(Players players, Ladder ladder, Prizes prizes) {
-        System.out.println("\n사다리 결과\n");
         OutputView.printPlayersNames(players.getPlayers());
-        System.out.println(" ");
 
-        for (Line line : ladder.getLadder()) {
-            System.out.print("  ");
+        for (Line line : ladder.getLadder())
             OutputView.printLine(line.getPoints());
-            System.out.println("");
-        }
-        OutputView.printLadderResults(prizes.getPrizes());
+
+        OutputView.printPrizes(prizes.getPrizes());
     }
 
     private GameResult createGameResult(Players players, Ladder ladder, Prizes prizes) {
@@ -99,17 +96,15 @@ public class LadderGame {
         return new GameResult(gameResultCreator.createGameResult());
     }
 
-    private String[] inputPlayersNames() {
-        String names = InputView.inputPlayersNames();
-        return Convert.splitNames(names);
-    }
+    private void askAndPrintGameResult(GameResult gameResult) {
+        do {
+            String name = InputView.inputPeopleResultRequest();
+            if (name.equals("all"))
+                break;
 
-    private String[] inputResults() {
-        String prizes = InputView.inputLadderResults();
-        return Convert.splitNames(prizes);
-    }
+            printPlayerResult(gameResult, name);
+        } while (true);
 
-    private int inputHeight() {
-        return InputView.inputHeight();
+        OutputView.printAllGameResult(gameResult.getGameResult());
     }
 }
