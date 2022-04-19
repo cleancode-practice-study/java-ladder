@@ -27,16 +27,19 @@ public class Line {
     }
 
     private List<Boolean> createValidLine(List<Boolean> points) {
-        for (int i = 0; i < points.size(); i++) {
-            int lastIdx = points.size() - 1;
-            if (i != lastIdx && isValidPoints(points, i))
-                points.set(i + 1, false);
-        }
+        for (int i = 0; i < points.size(); i++)
+            modifyPoint(points, i);
 
         return points;
     }
 
     private boolean isValidPoints(List<Boolean> points, int index) {
         return points.get(index) && points.get(index + 1);
+    }
+
+    private void modifyPoint(List<Boolean> points, int pointIdx) {
+        int lastIdx = points.size() - 1;
+        if (pointIdx != lastIdx && isValidPoints(points, pointIdx))
+            points.set(pointIdx + 1, false);
     }
 }
