@@ -42,26 +42,33 @@ public class Lines {
                 }
                 replay = false;
             }
-        } while (!replay);
+        } while (replay);
 
         return lines;
     }
 
     private List<Integer> createBridgesCount(List<Line> lines) {
-        List<Integer> LinesCount = new ArrayList<>();
+        List<Integer> bridgesCount = new ArrayList<>();
 
         for (int i = 0; i < width - 1; i++) {
-            int cnt = 0;
-            for (int j = 0; j < height; j++) {
-                Line line = lines.get(j);
-                List<Boolean> points = line.getPoints();
-                if (points.get(i)) {
-                    cnt++;
-                }
-            }
-            LinesCount.add(cnt);
+            int count = checkBridgeCount(lines, i);
+            bridgesCount.add(count);
         }
 
-        return LinesCount;
+        return bridgesCount;
+    }
+
+    private int checkBridgeCount(List<Line> lines, int index) {
+        int count = 0;
+
+        for (int i = 0; i < height; i++) {
+            Line line = lines.get(i);
+            List<Boolean> points = line.getPoints();
+            if (points.get(index)) {
+                count++;
+            }
+        }
+        return count;
+
     }
 }
