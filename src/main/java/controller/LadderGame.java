@@ -24,7 +24,7 @@ public class LadderGame {
             printPlayerResult(gameResult, name);
         } while (true);
 
-        OutputView.printAllPeopleResult(gameResult);
+        OutputView.printAllPeopleResult(gameResult.getGameResult());
     }
 
     private void printPlayerResult(GameResult gameResult, String name) {
@@ -33,7 +33,7 @@ public class LadderGame {
             return;
         }
 
-        OutputView.printPeopleResult(gameResult, name);
+        OutputView.printPeopleResult(gameResult.getGameResult(), name);
     }
 
     private Players createPlayers() {
@@ -69,7 +69,7 @@ public class LadderGame {
             names = inputResults();
             resultsLength = Validator.isValidResultsCount(names.length, players.getPlayersCount());
             if (!resultsLength)
-                OutputView.printResultsCountErrorMessage(players);
+                OutputView.printResultsCountErrorMessage(players.getPlayersCount());
         } while (!resultsLength);
 
         return new Prizes(names);
@@ -80,8 +80,9 @@ public class LadderGame {
     }
 
     private GameResult createGameResult(Players players, Ladder ladder, Prizes prizes) {
-        OutputView.printLadder(players, ladder, prizes);
-        return new GameResult(players, ladder, prizes);
+        OutputView.printLadder(players.getPlayers(), ladder.getLadder(), prizes.getPrizes());
+        GameResultCreator gameResult = new GameResultCreator(players, ladder, prizes);
+        return new GameResult(gameResult.getGameResult());
     }
 
     private String[] inputPlayersNames() {

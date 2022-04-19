@@ -23,9 +23,7 @@ public class Line {
 
         int count = 0;
         while (count < countOfPerson - 1) {
-            int idx = random.nextInt(BOUND);
-            RandomBoolean randomBoolean = RandomBoolean.getRandomBoolean(idx);
-            points.add(randomBoolean.getBoolean());
+            points.add(random.nextBoolean());
             count++;
         }
 
@@ -35,7 +33,7 @@ public class Line {
     private List<Boolean> checkOneLine(List<Boolean> points) {
         for (int i = 0; i < points.size(); i++) {
             if (i != points.size() - 1 && points.get(i) && points.get(i + 1))
-                points.set(i + 1, RandomBoolean.FALSE.getBoolean());
+                points.set(i + 1, false);
         }
 
         return points;
