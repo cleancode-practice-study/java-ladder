@@ -11,6 +11,8 @@ public class LadderGame {
         int width = players.getPlayersCount();
         int height = inputHeight();
         Ladder ladder = createLadder(width, height);
+
+        printLadder(players, ladder, prizes);
         GameResult gameResult = createGameResult(players, ladder, prizes);
         askAndPrintGameResult(gameResult);
     }
@@ -79,8 +81,20 @@ public class LadderGame {
         return new Ladder(width, height);
     }
 
+    private void printLadder(Players players, Ladder ladder, Prizes prizes) {
+        System.out.println("\n사다리 결과\n");
+        OutputView.printPlayersNames(players.getPlayers());
+        System.out.println(" ");
+
+        for (Line line : ladder.getLadder()) {
+            System.out.print("  ");
+            OutputView.printLine(line.getPoints());
+            System.out.println("");
+        }
+        OutputView.printLadderResults(prizes.getPrizes());
+    }
+
     private GameResult createGameResult(Players players, Ladder ladder, Prizes prizes) {
-        OutputView.printLadder(players.getPlayers(), ladder.getLadder(), prizes.getPrizes());
         GameResultCreator gameResultCreator = new GameResultCreator(players, ladder, prizes);
         return new GameResult(gameResultCreator.createGameResult());
     }
