@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Line {
     public static final int BOUND = 2;
+
     private List<Boolean> points;
 
     public Line(int countOfPerson) {

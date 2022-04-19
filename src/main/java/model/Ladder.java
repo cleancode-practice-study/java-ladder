@@ -42,7 +42,6 @@ public class Ladder {
             lines = getLines(width, height);
 
             int[] count = getLinesCount(lines);
-
             boolean replay = true;
             for (int i : count) {
                 if (i == 0) {
@@ -50,6 +49,7 @@ public class Ladder {
                     break;
                 }
                 replay = false;
+                
             }
 
             if (!replay) break;
