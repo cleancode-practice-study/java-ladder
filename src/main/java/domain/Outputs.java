@@ -14,10 +14,6 @@ public class Outputs {
         return outputs;
     }
 
-    public int getOutputsCount() {
-        return outputs.size();
-    }
-
     public List<String> getOutputNames() {
         return outputs
                 .stream()

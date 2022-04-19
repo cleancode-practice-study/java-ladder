@@ -35,50 +35,15 @@ public class LadderGame {
 
     public static GameResult getGameResult(Ladder ladder, Players players, Outputs outputs) {
         Map<Player, Output> result = new HashMap<>();
-        // 사다리 타기 순서대로 한 명 씩..
 
-        for (int i = 0 ; i < players.getPlayerCount() ; i++) {
-            Player player = players.getPlayers().get(i);
-            Output output = getEachLadderResult(i, ladder, outputs);
+        for (int columnIndex = 0 ; columnIndex < players.getPlayerCount() ; columnIndex++) {
+            Player player = players.getPlayers().get(columnIndex);
+            Output output = ladder.getEachLadderResult(columnIndex, outputs);
 
             result.put(player, output);
         }
 
         return new GameResult(result);
-    }
-
-    private static Output getEachLadderResult(int columnIndex, Ladder ladder, Outputs outputs) {
-        Line line = ladder.getLines().get(0);
-        int ladderWidth = line.getLine().size();
-        int ladderHeight = ladder.getLadderHeight();
-
-        int startLine;
-        int j;
-
-        for (startLine = columnIndex, j = 0 ; j < ladderHeight  ; ) {
-            Line ladderLine = ladder.getLines().get(j);
-            List<Boolean> points = ladderLine.getLine();
-
-            // 현재 타는 라인의 오른쪽에 루트가 있는지
-            if (startLine != ladderWidth && points.get(startLine)) {
-                startLine++;
-                j++;
-                continue;
-            }
-
-            // 현재 타는 라인의 왼쪽에 루트가 있는지
-            if (startLine != 0 && points.get(startLine - 1) ) {
-                startLine--;
-                j++;
-                continue;
-            }
-
-            j++;
-        }
-
-        List<Output> output = outputs.getOutputs();
-
-        return output.get(startLine);
     }
 
     public static Ladder createLadder(int playerCount, int maxLadderHeight) {

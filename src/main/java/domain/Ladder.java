@@ -43,7 +43,29 @@ public class Ladder {
         return lines;
     }
 
-    public int getLadderHeight() {
-        return lines.size();
+    public Output getEachLadderResult(int startLine, Outputs outputs) {
+        Line line = lines.get(0);
+        int ladderWidth = line.getLine().size();
+        int ladderHeight = lines.size();
+
+        int currentRowLine;
+        int currentColumnLine;
+
+        for (currentRowLine = startLine, currentColumnLine = 0 ; currentColumnLine < ladderHeight  ; ) {
+            Line ladderLine = lines.get(currentColumnLine);
+            List<Boolean> points = ladderLine.getLine();
+
+            if (currentRowLine != ladderWidth && points.get(currentRowLine)) {
+                currentRowLine++;
+            } else if (currentRowLine != 0 && points.get(currentRowLine - 1) ) {
+                currentRowLine--;
+            }
+
+            currentColumnLine++;
+        }
+
+        List<Output> output = outputs.getOutputs();
+
+        return output.get(currentRowLine);
     }
 }
