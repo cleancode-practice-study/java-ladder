@@ -66,14 +66,15 @@ public class Lines {
         for (int i = 0; i < height; i++) {
             Line line = lines.get(i);
             List<Boolean> points = line.getPoints();
-            count = modifyCount(points.get(index), count);
+            count = upDateCount(points.get(index), count);
         }
         return count;
     }
 
-    private int modifyCount(boolean point, int count) {
-        if (point)
+    private int upDateCount(boolean point, int count) {
+        if (point) {
             count += 1;
+        }
         return count;
     }
 }

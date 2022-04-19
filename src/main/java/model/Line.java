@@ -39,7 +39,8 @@ public class Line {
 
     private void modifyPoint(List<Boolean> points, int pointIdx) {
         int lastIdx = points.size() - 1;
-        if (pointIdx != lastIdx && isValidPoints(points, pointIdx))
+        if (pointIdx != lastIdx && isValidPoints(points, pointIdx)) {
             points.set(pointIdx + 1, false);
+        }
     }
 }

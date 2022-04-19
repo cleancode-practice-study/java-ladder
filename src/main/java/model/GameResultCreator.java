@@ -1,52 +1,66 @@
 package main.java.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GameResultCreator {
-    private final Players players;
-    private final Ladder ladder;
-    private final Prizes prizes;
+    private final List<String> players;
+    private final List<Line> lines;
+    private final List<String> prizes;
 
-    public GameResultCreator(Players players, Ladder ladder, Prizes prizes) {
+    public GameResultCreator(List<String> players, List<Line> lines, List<String> prizes) {
         this.players = players;
-        this.ladder = ladder;
+        this.lines = lines;
         this.prizes = prizes;
     }
 
     public Map<String, String> createGameResult() {
         Map<String, String> result = new HashMap<>();
 
-        for (int i = 0; i < ladder.getWidth(); i++) { // width, player 순서대로
-            int location = i; // 해당 player 실시간 위치
+        for (int i = 0; i < players.size(); i++) {
+            int location = i;
             int height = 0;
-            while (height < ladder.getHeight()) {
-                if (location == 0) {
-                    if (ladder.getLadder().get(height).getPoints().get(location)) {
-                        location++;
-                        height++;
-                    } else height++;
 
-                } else if (location == ladder.getWidth() - 1) {
-                    if (ladder.getLadder().get(height).getPoints().get(location - 1)) {
-                        location--;
-                        height++;
-                    } else height++;
-                } else {
-                    if (ladder.getLadder().get(height).getPoints().get(location - 1)) { // 사다리에서 왼쪽 line
-                        location--;
-                        height++;
-                    } else if (ladder.getLadder().get(height).getPoints().get(location)) { // 사다리에서 오른쪽 line
-                        location++;
-                        height++;
-                    } else height++;
-                }
+            while (height < lines.size()) {
+                location = upDateLocation(location, height);
+                height++;
             }
 
-            result.put(players.getPlayers().get(i), prizes.getPrizes().get(location));
+            result.put(players.get(i), prizes.get(location));
         }
 
         return result;
+    }
+
+    private int upDateLocation(int location, int height) {
+        int lastIdx = players.size() - 1;
+        boolean left;
+
+        if (location == 0) {
+            boolean right = lines.get(height).getPoints().get(location);
+            if (right)
+                location++;
+        } else {
+            if (location != lastIdx) {
+                boolean right = lines.get(height).getPoints().get(location);
+                if (right) {
+                    location++;
+                    return location;
+                }
+                left = lines.get(height).getPoints().get(location - 1);
+                if (left)
+                    location--;
+
+                return location;
+            }
+
+            left = lines.get(height).getPoints().get(location - 1);
+            if (left)
+                location--;
+        }
+
+        return location;
     }
 }
 

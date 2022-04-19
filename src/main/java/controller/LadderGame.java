@@ -92,7 +92,7 @@ public class LadderGame {
     }
 
     private GameResult createGameResult(Players players, Ladder ladder, Prizes prizes) {
-        GameResultCreator gameResultCreator = new GameResultCreator(players, ladder, prizes);
+        GameResultCreator gameResultCreator = new GameResultCreator(players.getPlayers(), ladder.getLadder(), prizes.getPrizes());
         return new GameResult(gameResultCreator.createGameResult());
     }
 
