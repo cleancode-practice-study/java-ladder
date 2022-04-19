@@ -100,4 +100,14 @@ public class LadderGame {
 
         return null;
     }
+
+    public static boolean checkAllPrintCommand(String printCommand) {
+        return printCommand.equals("all");
+    }
+
+    public static boolean checkPlayerName(String playerName, Players players) {
+        return players.getPlayerNames()
+                .stream()
+                .anyMatch(name -> name.equals(playerName));
+    }
 }

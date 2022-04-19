@@ -19,7 +19,7 @@ public class Controller {
 
         GameResult gameResult = LadderGame.getGameResult(ladder, players, outputs);
 
-        printGameResults(gameResult, players);
+        showGameResult(gameResult, players);
     }
 
     public Players createPlayers() {
@@ -89,16 +89,86 @@ public class Controller {
         return LadderGame.getLadder(playerCount, maxLadderHeight);
     }
 
-    private void printGameResults(GameResult gameResult, Players players) {
-        boolean loop = true;
+    private void showGameResult(GameResult gameResult, Players players) {
+        // all -> 전체 게임 결과 출력
+        // name -> 각 한 명당 게임 결과 출력
+            // name 잘못 됐다면 다시 입력 받도록 함
+        // 위 과정을 반복
 
-        while (loop) {
-            String playerName = InputView.printWhichPersonToBeSeen();
-            Player player = LadderGame.findPlayer(playerName, players);
+        boolean isAllPrint;
 
-            OutputView.printGameResult(player, gameResult);
+        while (true) {
+            String printCommand = InputView.printWhichPersonToBeSeen();
+            isAllPrint = LadderGame.checkAllPrintCommand(printCommand);
+
+            // isAllPrint : true -> all 출력하고 끝내기
+            printGameResult(isAllPrint, gameResult, players, printCommand);
+            // isAllPrint : false -> 한 명 씩 출력
         }
     }
+
+    private void printGameResult(boolean isAllPrint, GameResult gameResult, Players players, String printCommand) {
+        if (isAllPrint) {
+            printAllGameResult(gameResult, players);
+        } else {
+            printEachGameResult(gameResult, players, printCommand);
+        }
+    }
+
+    private void printAllGameResult(GameResult gameResult, Players players) {
+        OutputView.printAllGameResult(players, gameResult);
+    }
+
+    private void printEachGameResult(GameResult gameResult, Players players, String printCommand) {
+        boolean isValidName = LadderGame.checkPlayerName(printCommand, players);
+
+        if (isValidName) {
+            Player player = LadderGame.findPlayer(printCommand, players);
+            OutputView.printGameResult(player, gameResult);
+        }
+
+        if (!isValidName) {
+            OutputView.printPlayerAbstractErrorMessage();
+        }
+    }
+
+//    private void showGameResults(GameResult gameResult, Players players) {
+//        boolean loop = true;
+//        boolean isAllPrintResult;
+//        boolean isValidName;
+//
+//        do {
+//            String printCommand = InputView.printWhichPersonToBeSeen();
+//
+//            isAllPrintResult = LadderGame.checkAllPrintCommand(printCommand);
+//            isValidName = LadderGame.checkPlayerName(printCommand, players);
+//
+//            printGameResult(printCommand, isAllPrintResult, players, gameResult);
+//        } while (loop);
+//    }
+//
+//    private void printGameResult(String printCommand, boolean isAllPrintResult, Players players, GameResult gameResult) {
+//        boolean isValidName;
+//
+//        if (isAllPrintResult) {
+//            OutputView.printAllGameResult(players, gameResult);
+//            return;
+//        }
+//
+//        Player player = LadderGame.findPlayer(printCommand, players);
+//
+//        isValidName = checkPlayerState(player);
+//
+//
+//    }
+//
+//    private boolean checkPlayerState(Player player) {
+//        if (player == null) {
+//            OutputView.printPlayerAbstractErrorMessage();
+//            return false;
+//        }
+//        return true;
+//    }
 }
 
 

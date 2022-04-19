@@ -9,7 +9,9 @@ public class OutputView {
     private static final String INPUT_RESULT_ERROR_MESSAGE = "[ERROR] 참가자의 수와 동일한 수로 입력해주십시오.";
     private static final String INPUT_NAMES_LIMIT_ERROR_MESSAGE = "[ERROR] 참가자의 이름은 5자 이하로 입력해주십시오.";
     private static final String LADDER_RESULT_MESSAGE = "사다리 결과";
-    private static final String GAME_RESULT_MESSAGE = "실행 결과";
+    private static final String GAME_RESULT_MESSAGE = "실행 결과\n";
+    private static final String EACH_GAME_RESULT_MESSAGE = "%s : %s\n";
+    private static final String PLAYER_ABSTRACT_ERROR_MESSAGE = "[ERROR] 찾는 참자가자 없습니다. 이름을 다시 입력해주십시오.";
 
     public static void printInputNamesErrorMessage() {
         System.out.println(INPUT_NAMES_ERROR_MESSAGE);
@@ -72,8 +74,22 @@ public class OutputView {
 
     public static void printGameResult(Player player, GameResult gameResult) {
         System.out.println();
-        System.out.println(GAME_RESULT_MESSAGE);
+        System.out.print(GAME_RESULT_MESSAGE);
         System.out.println(gameResult.getResult(player));
         System.out.println();
+    }
+
+    public static void printAllGameResult(Players players, GameResult gameResult) {
+        System.out.println();
+        System.out.print(GAME_RESULT_MESSAGE);
+
+        for (Player player : players.getPlayers()) {
+            System.out.printf(EACH_GAME_RESULT_MESSAGE, player.getName(), gameResult.getResult(player));
+        }
+        System.out.println();
+    }
+
+    public static void printPlayerAbstractErrorMessage() {
+        System.out.println(PLAYER_ABSTRACT_ERROR_MESSAGE);
     }
 }
