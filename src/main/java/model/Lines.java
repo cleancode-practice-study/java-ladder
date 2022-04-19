@@ -33,7 +33,7 @@ public class Lines {
         while (true) {
             lines = createLines(width, height);
 
-            int[] count = createLinesCount(lines);
+            List<Integer> count = createLinesCount(lines);
 
             boolean replay = true;
             for (int i : count) {
@@ -51,18 +51,21 @@ public class Lines {
         return lines;
     }
 
-    private int[] createLinesCount(List<Line> lines) {
-        int[] count = new int[width - 1];
+    private List<Integer> createLinesCount(List<Line> lines) {
+        List<Integer> LinesCount = new ArrayList<>();
 
-        for (int i = 0; i < width - 1; i++) {
-            count[i] = 0;
+        for (int i = 0; i < this.width - 1; i++) {
+            int cnt = 0;
             for (int j = 0; j < height; j++) {
                 Line line = lines.get(j);
                 List<Boolean> points = line.getPoints();
-                if (points.get(i)) count[i]++;
+                if (points.get(i)) {
+                    cnt++;
+                }
             }
+            LinesCount.add(cnt);
         }
 
-        return count;
+        return LinesCount;
     }
 }
