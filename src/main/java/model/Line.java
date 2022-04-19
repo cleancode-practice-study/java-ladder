@@ -5,37 +5,38 @@ import java.util.List;
 import java.util.Random;
 
 public class Line {
-    public static final int BOUND = 2;
+    private final List<Boolean> line;
 
-    private List<Boolean> points;
-
-    public Line(int countOfPerson) {
-        this.points = createLine(countOfPerson);
+    public Line(int playerCount) {
+        int pointCount = playerCount - 1;
+        this.line = createLine(pointCount);
     }
 
     public List<Boolean> getPoints() {
-        return points;
+        return this.line;
     }
 
-    private List<Boolean> createLine(int countOfPerson) {
+    private List<Boolean> createLine(int pointCount) {
         Random random = new Random();
         List<Boolean> points = new ArrayList<>();
 
-        int count = 0;
-        while (count < countOfPerson - 1) {
+        for (int i = 0; i < pointCount; i++)
             points.add(random.nextBoolean());
-            count++;
-        }
 
-        return checkOneLine(points);
+        return createValidLine(points);
     }
 
-    private List<Boolean> checkOneLine(List<Boolean> points) {
+    private List<Boolean> createValidLine(List<Boolean> points) {
         for (int i = 0; i < points.size(); i++) {
-            if (i != points.size() - 1 && points.get(i) && points.get(i + 1))
+            int lastIdx = points.size() - 1;
+            if (i != lastIdx && isValidPoints(points, i))
                 points.set(i + 1, false);
         }
 
         return points;
+    }
+
+    private boolean isValidPoints(List<Boolean> points, int index) {
+        return points.get(index) && points.get(index + 1);
     }
 }

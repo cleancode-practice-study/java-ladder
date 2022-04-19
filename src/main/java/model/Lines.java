@@ -33,7 +33,7 @@ public class Lines {
 
         do {
             lines = createRandomLines();
-            List<Integer> count = createBridgesCount(lines);
+            List<Integer> count = createBridgesCounts(lines);
 
             for (int i : count) {
                 if (i == 0) {
@@ -47,15 +47,15 @@ public class Lines {
         return lines;
     }
 
-    private List<Integer> createBridgesCount(List<Line> lines) {
-        List<Integer> bridgesCount = new ArrayList<>();
+    private List<Integer> createBridgesCounts(List<Line> lines) {
+        List<Integer> bridgesCounts = new ArrayList<>();
 
         for (int i = 0; i < width - 1; i++) {
-            int count = checkBridgeCount(lines, i);
-            bridgesCount.add(count);
+            int bridgeCount = checkBridgeCount(lines, i);
+            bridgesCounts.add(bridgeCount);
         }
 
-        return bridgesCount;
+        return bridgesCounts;
     }
 
     private int checkBridgeCount(List<Line> lines, int index) {
@@ -69,6 +69,5 @@ public class Lines {
             }
         }
         return count;
-
     }
 }
