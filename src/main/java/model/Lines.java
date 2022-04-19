@@ -29,11 +29,12 @@ public class Lines {
 
     private List<Line> createValidLines() {
         List<Line> lines;
+        List<Integer> count;
         boolean replay = true;
 
         do {
             lines = createRandomLines();
-            List<Integer> count = createBridgesCounts(lines);
+            count = createBridgesCounts(lines);
 
             for (int i : count) {
                 if (i == 0) {
@@ -49,8 +50,9 @@ public class Lines {
 
     private List<Integer> createBridgesCounts(List<Line> lines) {
         List<Integer> bridgesCounts = new ArrayList<>();
+        int pointCount = width - 1;
 
-        for (int i = 0; i < width - 1; i++) {
+        for (int i = 0; i < pointCount; i++) {
             int bridgeCount = checkBridgeCount(lines, i);
             bridgesCounts.add(bridgeCount);
         }
@@ -64,10 +66,14 @@ public class Lines {
         for (int i = 0; i < height; i++) {
             Line line = lines.get(i);
             List<Boolean> points = line.getPoints();
-            if (points.get(index)) {
-                count++;
-            }
+            count = modifyCount(points.get(index), count);
         }
+        return count;
+    }
+
+    private int modifyCount(boolean point, int count) {
+        if (point)
+            count += 1;
         return count;
     }
 }
