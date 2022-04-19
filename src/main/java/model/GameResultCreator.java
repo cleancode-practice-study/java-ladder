@@ -46,15 +46,11 @@ public class GameResultCreator {
             return location;
         }
 
-        boolean right = lines.get(height).getPoints().get(location);
-        boolean left = lines.get(height).getPoints().get(location - 1);
+        int newLocation = upDateRightLocation(location, height);
+        if (location != newLocation)
+            return newLocation;
 
-        if (right)
-            location++;
-        else if (left)
-            location--;
-
-        return location;
+        return upDateLeftLocation(location, height);
     }
 
     private int upDateRightLocation(int location, int height) {
