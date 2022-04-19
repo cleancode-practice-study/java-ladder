@@ -81,7 +81,7 @@ public class LadderGame {
         return output.get(startLine);
     }
 
-    public static Ladder getLadder(int playerCount, int maxLadderHeight) {
+    public static Ladder createLadder(int playerCount, int maxLadderHeight) {
         Ladder ladder;
 
         do {
