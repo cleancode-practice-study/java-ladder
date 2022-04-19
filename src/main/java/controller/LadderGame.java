@@ -7,7 +7,7 @@ import main.java.view.OutputView;
 public class LadderGame {
     public void play() {
         Players players = createPlayers();
-        Prizes prizes = createResults(players);
+        Prizes prizes = createPrizes(players);
         int width = players.getPlayersCount();
         int height = inputHeight();
         Ladder ladder = createLadder(width, height);
@@ -63,16 +63,16 @@ public class LadderGame {
         if (!playersLength) OutputView.printPlayersCountErrorMessage();
     }
 
-    private Prizes createResults(Players players) {
+    private Prizes createPrizes(Players players) {
         String[] names;
-        boolean resultsLength;
+        boolean prizesCount;
 
         do {
             names = inputResults();
-            resultsLength = Validator.isValidResultsCount(names.length, players.getPlayersCount());
-            if (!resultsLength)
+            prizesCount = Validator.isValidPrizesCount(names.length, players.getPlayersCount());
+            if (!prizesCount)
                 OutputView.printResultsCountErrorMessage(players.getPlayersCount());
-        } while (!resultsLength);
+        } while (!prizesCount);
 
         return new Prizes(names);
     }

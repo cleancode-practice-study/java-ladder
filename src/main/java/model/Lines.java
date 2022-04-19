@@ -11,14 +11,14 @@ public class Lines {
     public Lines(int width, int height) {
         this.width = width;
         this.height = height;
-        this.lines = createFinalLines(width, height);
+        this.lines = createValidLines();
     }
 
     public List<Line> getLines() {
         return this.lines;
     }
 
-    private List<Line> createLines(int width, int height) {
+    private List<Line> createRandomLines() {
         List<Line> lines = new ArrayList<>();
 
         for (int i = 0; i < height; i++)
@@ -27,34 +27,30 @@ public class Lines {
         return lines;
     }
 
-    private List<Line> createFinalLines(int width, int height) {
+    private List<Line> createValidLines() {
         List<Line> lines;
+        boolean replay = true;
 
-        while (true) {
-            lines = createLines(width, height);
+        do {
+            lines = createRandomLines();
+            List<Integer> count = createBridgesCount(lines);
 
-            List<Integer> count = createLinesCount(lines);
-
-            boolean replay = true;
             for (int i : count) {
                 if (i == 0) {
                     replay = true;
                     break;
                 }
                 replay = false;
-
             }
-
-            if (!replay) break;
-        }
+        } while (!replay);
 
         return lines;
     }
 
-    private List<Integer> createLinesCount(List<Line> lines) {
+    private List<Integer> createBridgesCount(List<Line> lines) {
         List<Integer> LinesCount = new ArrayList<>();
 
-        for (int i = 0; i < this.width - 1; i++) {
+        for (int i = 0; i < width - 1; i++) {
             int cnt = 0;
             for (int j = 0; j < height; j++) {
                 Line line = lines.get(j);
