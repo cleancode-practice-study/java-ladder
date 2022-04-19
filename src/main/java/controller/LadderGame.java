@@ -81,8 +81,8 @@ public class LadderGame {
 
     private GameResult createGameResult(Players players, Ladder ladder, Prizes prizes) {
         OutputView.printLadder(players.getPlayers(), ladder.getLadder(), prizes.getPrizes());
-        GameResultCreator gameResult = new GameResultCreator(players, ladder, prizes);
-        return new GameResult(gameResult.getGameResult());
+        GameResultCreator gameResultCreator = new GameResultCreator(players, ladder, prizes);
+        return new GameResult(gameResultCreator.createGameResult());
     }
 
     private String[] inputPlayersNames() {

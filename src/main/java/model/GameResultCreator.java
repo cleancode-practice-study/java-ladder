@@ -14,7 +14,7 @@ public class GameResultCreator {
         this.prizes = prizes;
     }
 
-    public Map<String, String> getGameResult() {
+    public Map<String, String> createGameResult() {
         Map<String, String> result = new HashMap<>();
 
         for (int i = 0; i < ladder.getWidth(); i++) { // width, player 순서대로
