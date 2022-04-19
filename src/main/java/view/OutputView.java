@@ -39,23 +39,6 @@ public class OutputView {
         System.out.println("");
     }
 
-    private static void printPoint(boolean point, int pointIdx, int lastIdx) {
-        if (point) {
-            if (pointIdx != lastIdx) {
-                System.out.print("| ----- ");
-                return;
-            }
-            System.out.print("| ----- |");
-            return;
-        }
-
-        if (pointIdx != lastIdx) {
-            System.out.print("|       ");
-            return;
-        }
-        System.out.print("|       |");
-    }
-
     public static void printPrizes(List<String> prizes) {
         for (String prize : prizes)
             System.out.printf("%-8s", prize);
@@ -72,5 +55,22 @@ public class OutputView {
         System.out.println("\n실행 결과");
         for (String name : gameResult.keySet())
             System.out.println(name + " : " + gameResult.get(name));
+    }
+
+    private static void printPoint(boolean point, int pointIdx, int lastIdx) {
+        if (point) {
+            if (pointIdx != lastIdx) {
+                System.out.print("| ----- ");
+                return;
+            }
+            System.out.print("| ----- |");
+            return;
+        }
+
+        if (pointIdx != lastIdx) {
+            System.out.print("|       ");
+            return;
+        }
+        System.out.print("|       |");
     }
 }

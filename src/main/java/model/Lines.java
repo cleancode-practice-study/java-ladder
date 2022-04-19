@@ -73,7 +73,7 @@ public class Lines {
 
     private int upDateCount(boolean point, int count) {
         if (point) {
-            count += 1;
+            count++;
         }
         return count;
     }

@@ -16,7 +16,7 @@ public class GameResultCreator {
     }
 
     public Map<String, String> createGameResult() {
-        Map<String, String> result = new HashMap<>();
+        Map<String, String> gameResult = new HashMap<>();
 
         for (int i = 0; i < players.size(); i++) {
             int location = i;
@@ -27,10 +27,10 @@ public class GameResultCreator {
                 height++;
             }
 
-            result.put(players.get(i), prizes.get(location));
+            gameResult.put(players.get(i), prizes.get(location));
         }
 
-        return result;
+        return gameResult;
     }
 
     private int upDateLocation(int location, int height) {
@@ -54,18 +54,18 @@ public class GameResultCreator {
     }
 
     private int upDateRightLocation(int location, int height) {
-        boolean right = lines.get(height).getPoints().get(location);
+        boolean rightPoint = lines.get(height).getPoints().get(location);
 
-        if (right)
+        if (rightPoint)
             location++;
 
         return location;
     }
 
     private int upDateLeftLocation(int location, int height) {
-        boolean left = lines.get(height).getPoints().get(location - 1);
+        boolean leftPoint = lines.get(height).getPoints().get(location - 1);
 
-        if (left)
+        if (leftPoint)
             location--;
 
         return location;
