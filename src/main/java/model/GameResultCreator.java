@@ -35,30 +35,42 @@ public class GameResultCreator {
 
     private int upDateLocation(int location, int height) {
         int lastIdx = players.size() - 1;
-        boolean left;
 
         if (location == 0) {
-            boolean right = lines.get(height).getPoints().get(location);
-            if (right)
-                location++;
-        } else {
-            if (location != lastIdx) {
-                boolean right = lines.get(height).getPoints().get(location);
-                if (right) {
-                    location++;
-                    return location;
-                }
-                left = lines.get(height).getPoints().get(location - 1);
-                if (left)
-                    location--;
-
-                return location;
-            }
-
-            left = lines.get(height).getPoints().get(location - 1);
-            if (left)
-                location--;
+            location = upDateRightLocation(location, height);
+            return location;
         }
+
+        if (location == lastIdx) {
+            location = upDateLeftLocation(location, height);
+            return location;
+        }
+
+        boolean right = lines.get(height).getPoints().get(location);
+        boolean left = lines.get(height).getPoints().get(location - 1);
+
+        if (right)
+            location++;
+        else if (left)
+            location--;
+
+        return location;
+    }
+
+    private int upDateRightLocation(int location, int height) {
+        boolean right = lines.get(height).getPoints().get(location);
+
+        if (right)
+            location++;
+
+        return location;
+    }
+
+    private int upDateLeftLocation(int location, int height) {
+        boolean left = lines.get(height).getPoints().get(location - 1);
+
+        if (left)
+            location--;
 
         return location;
     }
