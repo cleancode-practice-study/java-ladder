@@ -27,4 +27,28 @@ public class ValidatorTest {
         //then
         assertThat(result).isTrue();
     }
+
+    @Test
+    void 플레이어_수가_두명_이상인_경우() {
+        //given
+        String[] names = {"ha", "jin", "dowon"};
+
+        //when
+        boolean result = Validator.isValidPlayersCount(names);
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void 플레이어_수가_두명_미만인_경우() {
+        //given
+        String[] names = {"halim"};
+
+        //when
+        boolean result = Validator.isValidPlayersCount(names);
+
+        //then
+        assertThat(result).isFalse();
+    }
 }
