@@ -1,9 +1,10 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Line {
-    private final ArrayList<Boolean> points = new ArrayList<>();
+    private final List<Boolean> points = new ArrayList<>();
 
     public Line (int playerCount) {
         addRoot(RandomRootCreator.getRandomRoot());
@@ -24,7 +25,7 @@ public class Line {
         }
     }
 
-    public ArrayList<Boolean> getLine() {
+    public List<Boolean> getLine() {
         return points;
     }
 }
