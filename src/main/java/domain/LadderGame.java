@@ -1,7 +1,5 @@
 package domain;
 
-import view.OutputView;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,12 +25,10 @@ public class LadderGame {
     public static Players getParticipantsByNames(String playerNames) {
         List<String> splitNames = splitNames(playerNames);
 
-        List<Player> players = new ArrayList<>();
-
-        for (String name : splitNames) {
-            Player player = new Player(name);
-            players.add(player);
-        }
+        List<Player> players = splitNames
+                .stream()
+                .map(Player::new)
+                .collect(Collectors.toList());
 
         return new Players(players);
     }
@@ -44,11 +40,10 @@ public class LadderGame {
     public static Outputs getOutputs(String outputNames) {
         List<String> splitOutputs = splitNames(outputNames);
 
-        List<Output> outputs = new ArrayList<>();
-
-        for (String output : splitOutputs) {
-            outputs.add(new Output(output));
-        }
+        List<Output> outputs = splitOutputs
+                .stream()
+                .map(Output::new)
+                .collect(Collectors.toList());
 
         return new Outputs(outputs);
     }
