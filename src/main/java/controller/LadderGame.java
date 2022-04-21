@@ -8,9 +8,9 @@ public class LadderGame {
     public void play() {
         Players players = createPlayers();
         Prizes prizes = createPrizes(players);
-        int width = players.getPlayerCount();
+        int playerCount = players.getPlayerCount();
         int height = inputHeight();
-        Ladder ladder = new Ladder(width, height);
+        Ladder ladder = new Ladder(playerCount, height);
 
         printLadder(players, ladder, prizes);
         GameResult gameResult = createGameResult(players, ladder, prizes);

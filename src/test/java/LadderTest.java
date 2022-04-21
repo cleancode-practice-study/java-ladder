@@ -11,14 +11,15 @@ public class LadderTest {
     void 사다리를_생성하는_경우() {
         //given
         int playerCount = 5;
+        int width = playerCount - 1;
         int height = 5;
-        Ladder ladder = new Ladder(playerCount - 1, height);
+        Ladder ladder = new Ladder(playerCount, height);
 
         //when
         List<Line> ladderLine = ladder.getLadder();
 
         //then
         assertThat(ladderLine.size()).isEqualTo(height);
-        assertThat(ladderLine.get(0).getPoints().size()).isEqualTo(playerCount - 1);
+        assertThat(ladderLine.get(0).getPoints().size()).isEqualTo(width);
     }
 }
