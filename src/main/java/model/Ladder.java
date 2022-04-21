@@ -5,8 +5,8 @@ import java.util.List;
 public class Ladder {
     private final Lines lines;
 
-    public Ladder(int width, int height) {
-        this.lines = new Lines(width, height);
+    public Ladder(int playerCount, int height) {
+        this.lines = new Lines(playerCount - 1, height);
     }
 
     public List<Line> getLadder() {

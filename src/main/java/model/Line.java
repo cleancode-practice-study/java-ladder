@@ -7,9 +7,8 @@ import java.util.Random;
 public class Line {
     private final List<Boolean> line;
 
-    public Line(int playerCount) {
-        int pointCount = playerCount - 1;
-        this.line = createLine(pointCount);
+    public Line(int width) {
+        this.line = createLine(width);
     }
 
     public List<Boolean> getPoints() {

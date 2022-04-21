@@ -50,9 +50,8 @@ public class Lines {
 
     private List<Integer> createBridgesCounts(List<Line> lines) {
         List<Integer> bridgesCounts = new ArrayList<>();
-        int pointCount = width - 1;
 
-        for (int i = 0; i < pointCount; i++) {
+        for (int i = 0; i < width; i++) {
             int bridgeCount = checkBridgeCount(lines, i);
             bridgesCounts.add(bridgeCount);
         }
