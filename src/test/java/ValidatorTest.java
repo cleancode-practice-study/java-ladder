@@ -51,4 +51,30 @@ public class ValidatorTest {
         //then
         assertThat(result).isFalse();
     }
+
+    @Test
+    void 실행_결과의_수가_플레이어_수와_같은_경우() {
+        //given
+        int prizesCount = 5;
+        int playersCount = 5;
+
+        //when
+        boolean result = Validator.isValidPrizesCount(prizesCount, playersCount);
+
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void 실행_결과의_수가_플레이어_수와_다른_경우() {
+        //given
+        int prizesCount = 5;
+        int playersCount = 3;
+
+        //when
+        boolean result = Validator.isValidPrizesCount(prizesCount, playersCount);
+
+        //then
+        assertThat(result).isFalse();
+    }
 }
