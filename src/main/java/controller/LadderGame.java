@@ -1,8 +1,8 @@
-package main.java.controller;
+package controller;
 
-import main.java.model.*;
-import main.java.view.InputView;
-import main.java.view.OutputView;
+import model.*;
+import view.InputView;
+import view.OutputView;
 
 public class LadderGame {
     public void play() {

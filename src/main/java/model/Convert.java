@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 public class Convert {
     public static String[] splitNames(String names){

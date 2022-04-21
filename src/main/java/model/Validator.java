@@ -1,4 +1,4 @@
-package main.java.model;
+package model;
 
 public class Validator {
     public static final int PLAYER_NAME_STANDARD_LENGTH = 5;
