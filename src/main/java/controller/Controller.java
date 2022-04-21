@@ -4,10 +4,7 @@ import domain.*;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class Controller {
-    private final static int PLAYER_NAME_LIMIT = 6;
 
     public void run() {
         Players players = createPlayers();
@@ -29,33 +26,26 @@ public class Controller {
 
         do {
             playerNames = InputView.getPlayerNamesInput();
-            isContainComma = checkContainComma(playerNames);
-            isUnderFiveLetter = checkUnderFiveLetter(playerNames);
+            isContainComma = LadderGame.checkContainComma(playerNames);
+            isUnderFiveLetter = LadderGame.checkUnderFiveLetter(playerNames);
+
+            checkCommaError(isContainComma);
+            checkLetterError(isUnderFiveLetter);
         } while (!isContainComma || !isUnderFiveLetter);
 
         return LadderGame.getParticipantsByNames(playerNames);
     }
 
-    private boolean checkContainComma(String names) {
-        if (names.contains(",")) {
-            return true;
+    private void checkCommaError(boolean isContainComma) {
+        if (!isContainComma) {
+            OutputView.printInputNamesErrorMessage();
         }
-
-        OutputView.printInputNamesErrorMessage();
-        return false;
     }
 
-    private boolean checkUnderFiveLetter(String names) {
-        List<String> playerNames = LadderGame.splitNames(names);
-
-        boolean isUnderFiveLetter = playerNames.stream().allMatch(name -> name.length() < PLAYER_NAME_LIMIT);
-
-        if (isUnderFiveLetter) {
-            return true;
+    private void checkLetterError(boolean isUnderFiveLetter) {
+        if (!isUnderFiveLetter) {
+            OutputView.printInputNamesLimitErrorMessage();
         }
-
-        OutputView.printInputNamesLimitErrorMessage();
-        return false;
     }
 
     public Outputs createOutputs(Players players) {
@@ -65,22 +55,20 @@ public class Controller {
 
         do {
             outputNames = InputView.getGameResultInput();
-            isMatchedWithPlayerCount = checkIsMatchedWithPlayerCount(outputNames, players);
-            isContainComma = checkContainComma(outputNames);
+            isMatchedWithPlayerCount = LadderGame.checkIsMatchedWithPlayerCount(outputNames, players);
+            isContainComma = LadderGame.checkContainComma(outputNames);
+
+            checkOutputCount(isMatchedWithPlayerCount);
+            checkCommaError(isContainComma);
         } while (!isMatchedWithPlayerCount || !isContainComma);
 
         return LadderGame.getOutputs(outputNames);
     }
 
-    private boolean checkIsMatchedWithPlayerCount(String outputNames, Players players) {
-        String[] outputs = outputNames.split(",");
-
-        if (outputs.length == players.getPlayerCount()) {
-            return true;
+    private void checkOutputCount(boolean isMatchedWithPlayerCount) {
+        if (!isMatchedWithPlayerCount) {
+            OutputView.printInputResultErrorMessage();
         }
-
-        OutputView.printInputResultErrorMessage();
-        return false;
     }
 
     private Ladder createLadder(int playerCount) {
