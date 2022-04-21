@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LadderGame {
     public static Players getParticipantsByNames(String playerNames) {
@@ -17,8 +18,7 @@ public class LadderGame {
     }
 
     public static List<String> splitNames(String names) {
-        String[] participantsNames = names.split(",");
-        return new ArrayList<>(Arrays.asList(participantsNames));
+        return Arrays.stream(names.split(",")).collect(Collectors.toList());
     }
 
     public static Outputs getOutputs(String outputNames) {
