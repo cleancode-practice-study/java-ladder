@@ -92,9 +92,11 @@ public class Controller {
     private void printGameResult(boolean isAllPrint, GameResult gameResult, Players players, String printCommand) {
         if (isAllPrint) {
             printAllGameResult(gameResult, players);
-        } else {
-            printEachGameResult(gameResult, players, printCommand);
+            return;
         }
+
+        printEachGameResult(gameResult, players, printCommand);
+
     }
 
     private void printAllGameResult(GameResult gameResult, Players players) {
@@ -107,11 +109,10 @@ public class Controller {
         if (isValidName) {
             Player player = LadderGame.findPlayer(printCommand, players);
             OutputView.printGameResult(player, gameResult);
+            return;
         }
 
-        if (!isValidName) {
-            OutputView.printPlayerAbstractErrorMessage();
-        }
+        OutputView.printPlayerAbstractErrorMessage();
     }
 }
 
