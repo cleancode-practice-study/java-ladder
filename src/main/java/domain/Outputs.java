@@ -20,4 +20,8 @@ public class Outputs {
                 .map(Output::getOutputName)
                 .collect(Collectors.toList());
     }
+
+    public Output getOutput(int outputOrder) {
+        return outputs.get(outputOrder);
+    }
 }

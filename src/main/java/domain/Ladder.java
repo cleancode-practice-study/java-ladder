@@ -14,11 +14,10 @@ public class Ladder {
     }
 
     public boolean checkLadder() {
-        int rootCount;
-        int lineRowLength = lines.get(0).getLine().size();
+        int lineRowLength = lines.get(0).LineLength();
 
         for (int i = 0 ; i < lineRowLength ; i++) {
-            rootCount = getRootCount(i);
+            int rootCount = getRootCount(i);
 
             if (rootCount == 0) {
                 return false;
@@ -55,17 +54,23 @@ public class Ladder {
             Line ladderLine = lines.get(currentColumnLine);
             List<Boolean> points = ladderLine.getLine();
 
-            if (currentRowLine != ladderWidth && points.get(currentRowLine)) {
+            if (canMoveRight(currentRowLine, ladderWidth, points)) {
                 currentRowLine++;
-            } else if (currentRowLine != 0 && points.get(currentRowLine - 1) ) {
+            } else if (cantMoveRight(currentRowLine, points)) {
                 currentRowLine--;
             }
 
             currentColumnLine++;
         }
 
-        List<Output> output = outputs.getOutputs();
+        return outputs.getOutput(currentRowLine);
+    }
 
-        return output.get(currentRowLine);
+    private boolean canMoveRight(int currentRowLine, int ladderWidth, List<Boolean> points) {
+        return currentRowLine != ladderWidth && points.get(currentRowLine);
+    }
+
+    private boolean cantMoveRight(int currentRowLine, List<Boolean> points) {
+        return currentRowLine != 0 && points.get(currentRowLine - 1);
     }
 }
