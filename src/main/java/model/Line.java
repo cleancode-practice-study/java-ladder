@@ -11,15 +11,15 @@ public class Line {
         this.line = createLine(width);
     }
 
-    public List<Boolean> getPoints() {
+    public List<Boolean> getLine() {
         return this.line;
     }
 
-    private List<Boolean> createLine(int pointCount) {
+    private List<Boolean> createLine(int width) {
         Random random = new Random();
         List<Boolean> points = new ArrayList<>();
 
-        for (int i = 0; i < pointCount; i++)
+        for (int i = 0; i < width; i++)
             points.add(random.nextBoolean());
 
         return createValidLine(points);

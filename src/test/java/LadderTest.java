@@ -20,6 +20,6 @@ public class LadderTest {
 
         //then
         assertThat(ladderLine.size()).isEqualTo(height);
-        assertThat(ladderLine.get(0).getPoints().size()).isEqualTo(width);
+        assertThat(ladderLine.get(0).getLine().size()).isEqualTo(width);
     }
 }

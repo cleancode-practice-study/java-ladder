@@ -86,7 +86,7 @@ public class LadderGame {
         OutputView.printPlayersNames(players.getPlayers());
 
         for (Line line : ladder.getLadder())
-            OutputView.printLine(line.getPoints());
+            OutputView.printLine(line.getLine());
 
         OutputView.printPrizes(prizes.getPrizes());
     }
