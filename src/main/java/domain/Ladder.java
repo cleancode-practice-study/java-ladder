@@ -2,15 +2,15 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Ladder {
     List<Line> lines;
 
     public Ladder (int maxLadderHeight, int playerCount){
         lines = new ArrayList<>();
-        for (int i = 0 ; i < maxLadderHeight ; i++) {
-            lines.add(new Line(playerCount));
-        }
+        IntStream.range(0, maxLadderHeight)
+                .forEach(i -> lines.add(new Line(playerCount)));
     }
 
     public boolean checkLadder() {
