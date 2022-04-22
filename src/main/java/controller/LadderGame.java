@@ -5,6 +5,8 @@ import view.InputView;
 import view.OutputView;
 
 public class LadderGame {
+    public static final String ALL = "all";
+
     public void play() {
         Players players = createPlayers();
         Prizes prizes = createPrizes(players);
@@ -100,7 +102,7 @@ public class LadderGame {
     private void askAndPrintGameResult(GameResult gameResult) {
         do {
             String name = InputView.inputPeopleResultRequest();
-            if (name.equals("all"))
+            if (name.equals(ALL))
                 break;
 
             printPlayerResult(gameResult, name);

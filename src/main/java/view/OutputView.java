@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
+
+    public static final String GAME_RESULT_MESSAGE = "\n실행 결과";
+
     public static void printPlayerNameLengthErrorMessage() {
         System.out.println("이름은 최대 5글자까지 입력할 수 있습니다. 다시 입력 해 주세요.");
     }
@@ -47,12 +50,12 @@ public class OutputView {
     }
 
     public static void printOnePeopleGameResult(Map<String, String> gameResult, String name) {
-        System.out.println("\n실행 결과");
+        System.out.println(GAME_RESULT_MESSAGE);
         System.out.println(gameResult.get(name));
     }
 
     public static void printAllGameResult(Map<String, String> gameResult) {
-        System.out.println("\n실행 결과");
+        System.out.println(GAME_RESULT_MESSAGE);
         for (String name : gameResult.keySet())
             System.out.println(name + " : " + gameResult.get(name));
     }
