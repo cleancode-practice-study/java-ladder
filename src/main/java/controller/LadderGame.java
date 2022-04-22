@@ -30,8 +30,7 @@ public class LadderGame {
 
     private Players createPlayers() {
         String[] names;
-        boolean nameLength;
-        boolean playerCount;
+        boolean nameLength, playerCount;
 
         do {
             names = inputPlayersNames();
@@ -88,22 +87,24 @@ public class LadderGame {
     private void printLadder(Players players, Ladder ladder, Prizes prizes) {
         OutputView.printPlayersNames(players.getPlayers());
 
-        for (Line line : ladder.getLadder())
+        for (Line line : ladder.getLadder()) {
             OutputView.printLine(line.getLine());
+        }
 
         OutputView.printPrizes(prizes.getPrizes());
     }
 
     private GameResult createGameResult(Players players, Ladder ladder, Prizes prizes) {
         GameResultCreator gameResultCreator = new GameResultCreator(players.getPlayers(), ladder.getLadder(), prizes.getPrizes());
-        return new GameResult(gameResultCreator.createGameResult());
+        return new GameResult(gameResultCreator.getGameResult());
     }
 
     private void askAndPrintGameResult(GameResult gameResult) {
         do {
             String name = InputView.inputPeopleResultRequest();
-            if (name.equals(ALL))
+            if (name.equals(ALL)) {
                 break;
+            }
 
             printPlayerResult(gameResult, name);
         } while (true);

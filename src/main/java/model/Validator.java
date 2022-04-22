@@ -6,8 +6,9 @@ public class Validator {
 
     public static boolean isValidPlayerNameLength(String[] names) {
         for (String name : names) {
-            if (name.length() > PLAYER_NAME_STANDARD_LENGTH)
+            if (name.length() > PLAYER_NAME_STANDARD_LENGTH) {
                 return false;
+            }
         }
         return true;
     }

@@ -39,7 +39,7 @@ public class GameResultCreatorTest {
         GameResultCreator gameResultCreator = new GameResultCreator(players, lines, prizes);
 
         //when
-        Map<String, String> result = gameResultCreator.createGameResult();
+        Map<String, String> result = gameResultCreator.getGameResult();
 
         //then
         assertThat(result.size()).isEqualTo(3);

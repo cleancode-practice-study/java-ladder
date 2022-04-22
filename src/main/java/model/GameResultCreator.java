@@ -7,15 +7,19 @@ import java.util.Map;
 public class GameResultCreator {
     private final List<String> players;
     private final List<Line> lines;
-    private final List<String> prizes;
+    private final Map<String, String> gameResult;
 
     public GameResultCreator(List<String> players, List<Line> lines, List<String> prizes) {
         this.players = players;
         this.lines = lines;
-        this.prizes = prizes;
+        this.gameResult = createGameResult(players, lines, prizes);
     }
 
-    public Map<String, String> createGameResult() {
+    public Map<String, String> getGameResult() {
+        return this.gameResult;
+    }
+
+    private Map<String, String> createGameResult(List<String> players, List<Line> lines, List<String> prizes) {
         Map<String, String> gameResult = new HashMap<>();
 
         for (int i = 0; i < players.size(); i++) {
@@ -47,8 +51,9 @@ public class GameResultCreator {
         }
 
         int newLocation = upDateRightLocation(location, height);
-        if (location != newLocation)
+        if (location != newLocation) {
             return newLocation;
+        }
 
         return upDateLeftLocation(location, height);
     }
@@ -58,8 +63,9 @@ public class GameResultCreator {
         List<Boolean> points = line.getLine();
         boolean rightPoint = points.get(location);
 
-        if (rightPoint)
+        if (rightPoint) {
             location++;
+        }
 
         return location;
     }
@@ -69,8 +75,9 @@ public class GameResultCreator {
         List<Boolean> points = line.getLine();
         boolean leftPoint = points.get(location - 1);
 
-        if (leftPoint)
+        if (leftPoint) {
             location--;
+        }
 
         return location;
     }

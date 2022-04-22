@@ -68,8 +68,9 @@ public class Lines {
     }
 
     private int upDateBridgeCount(List<Boolean> points, int index, int count) {
-        if (points.get(index))
+        if (points.get(index)) {
             count++;
+        }
 
         return count;
     }

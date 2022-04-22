@@ -19,8 +19,9 @@ public class Line {
         Random random = new Random();
         List<Boolean> points = new ArrayList<>();
 
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < width; i++) {
             points.add(random.nextBoolean());
+        }
 
         return createValidLine(points);
     }
@@ -28,8 +29,9 @@ public class Line {
     private List<Boolean> createValidLine(List<Boolean> points) {
         int width = points.size();
 
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < width; i++) {
             modifyPoint(points, i);
+        }
 
         return points;
     }
@@ -38,8 +40,9 @@ public class Line {
         int width = points.size();
         int lastIdx = width - 1;
 
-        if (pointIdx != lastIdx && isValidPoints(points, pointIdx))
+        if (pointIdx != lastIdx && isValidPoints(points, pointIdx)) {
             points.set(pointIdx + 1, false);
+        }
     }
 
     private boolean isValidPoints(List<Boolean> points, int index) {
