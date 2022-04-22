@@ -1,8 +1,12 @@
+import model.GameResultCreator;
 import model.Line;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameResultCreatorTest {
     @Test
@@ -31,8 +35,14 @@ public class GameResultCreatorTest {
                 add("3000");
                 add("5000");
             }
-
         };
+        GameResultCreator gameResultCreator = new GameResultCreator(players, lines, prizes);
+
+        //when
+        Map<String, String> result = gameResultCreator.createGameResult();
+
+        //then
+        assertThat(result.size()).isEqualTo(3);
 
     }
 }

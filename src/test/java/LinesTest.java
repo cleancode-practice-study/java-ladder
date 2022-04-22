@@ -33,5 +33,4 @@ public class LinesTest {
         assertThat(bridgesCounts.get(1)).isGreaterThan(0);
         assertThat(bridgesCounts.get(2)).isGreaterThan(0);
     }
-
 }
