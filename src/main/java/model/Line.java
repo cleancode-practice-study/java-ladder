@@ -32,14 +32,14 @@ public class Line {
         return points;
     }
 
-    private boolean isValidPoints(List<Boolean> points, int index) {
-        return points.get(index) && points.get(index + 1);
-    }
-
     private void modifyPoint(List<Boolean> points, int pointIdx) {
         int lastIdx = points.size() - 1;
         if (pointIdx != lastIdx && isValidPoints(points, pointIdx)) {
             points.set(pointIdx + 1, false);
         }
+    }
+
+    private boolean isValidPoints(List<Boolean> points, int index) {
+        return points.get(index) && points.get(index + 1);
     }
 }
