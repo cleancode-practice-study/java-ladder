@@ -7,10 +7,8 @@ import java.util.stream.IntStream;
 public class Ladder {
     List<Line> lines;
 
-    public Ladder (int maxLadderHeight, int playerCount){
-        lines = new ArrayList<>();
-        IntStream.range(0, maxLadderHeight)
-                .forEach(i -> lines.add(new Line(playerCount)));
+    public Ladder (List<Line> lines){
+        this.lines = lines;
     }
 
     public boolean checkLadder() {

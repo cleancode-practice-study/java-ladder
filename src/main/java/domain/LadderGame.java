@@ -65,7 +65,7 @@ public class LadderGame {
         Ladder ladder;
 
         do {
-            ladder = new Ladder(maxLadderHeight, playerCount);
+            ladder = new Ladder(RandomLadderCreator.getRandomLadder(playerCount, maxLadderHeight));
         } while (!ladder.checkLadder());
 
         return ladder;
