@@ -15,6 +15,6 @@ public class RandomLadderCreatorTest {
         List<Line> lines = RandomLadderCreator.getRandomLadder(playerCount, maxLadderHeight);
 
         assertThat(lines.size()).isEqualTo(maxLadderHeight);
-        assertThat(lines.get(0).LineLength()).isEqualTo(playerCount - 1);
+        assertThat(lines.get(0).getLineLength()).isEqualTo(playerCount - 1);
     }
 }

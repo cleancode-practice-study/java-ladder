@@ -1,20 +1,20 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Ladder {
     List<Line> lines;
+    int ladderHeight;
+    int ladderWidth;
 
     public Ladder (List<Line> lines){
         this.lines = lines;
+        this.ladderHeight = lines.size();
+        this.ladderWidth = lines.get(0).getLineLength();
     }
 
     public boolean checkLadder() {
-        int lineRowLength = lines.get(0).LineLength();
-
-        for (int i = 0 ; i < lineRowLength ; i++) {
+        for (int i = 0 ; i < ladderWidth ; i++) {
             int rootCount = getRootCount(i);
 
             if (rootCount == 0) {
@@ -41,10 +41,6 @@ public class Ladder {
     }
 
     public Output getEachLadderResult(int startLine, Outputs outputs) {
-        Line line = lines.get(0);
-        int ladderWidth = line.getLine().size();
-        int ladderHeight = lines.size();
-
         int currentRowLine;
         int currentColumnLine;
 
@@ -52,7 +48,7 @@ public class Ladder {
             Line ladderLine = lines.get(currentColumnLine);
             List<Boolean> points = ladderLine.getLine();
 
-            if (canMoveRight(currentRowLine, ladderWidth, points)) {
+            if (canMoveRight(currentRowLine, points)) {
                 currentRowLine++;
             } else if (cantMoveRight(currentRowLine, points)) {
                 currentRowLine--;
@@ -64,7 +60,7 @@ public class Ladder {
         return outputs.getOutput(currentRowLine);
     }
 
-    private boolean canMoveRight(int currentRowLine, int ladderWidth, List<Boolean> points) {
+    private boolean canMoveRight(int currentRowLine, List<Boolean> points) {
         return currentRowLine != ladderWidth && points.get(currentRowLine);
     }
 

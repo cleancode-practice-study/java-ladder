@@ -11,6 +11,6 @@ public class LineTest {
 
         Line line = new Line(playerCount);
 
-        assertThat(line.LineLength()).isEqualTo(playerCount - 1);
+        assertThat(line.getLineLength()).isEqualTo(playerCount - 1);
     }
 }

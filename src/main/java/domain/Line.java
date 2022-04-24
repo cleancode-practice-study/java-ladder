@@ -29,7 +29,7 @@ public class Line {
         return points;
     }
 
-    public int LineLength() {
+    public int getLineLength() {
         return points.size();
     }
 }
