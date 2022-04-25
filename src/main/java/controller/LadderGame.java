@@ -30,15 +30,15 @@ public class LadderGame {
 
     private Players createPlayers() {
         String[] names;
-        boolean nameLength, playerCount;
+        boolean isValidNameLength, isValidPlayerCount;
 
         do {
             names = inputPlayersNames();
-            nameLength = Validator.isValidPlayerNameLength(names);
-            playerCount = Validator.isValidPlayersCount(names);
+            isValidNameLength = Validator.isValidPlayerNameLength(names);
+            isValidPlayerCount = Validator.isValidPlayersCount(names);
 
-            checkPlayerLengthError(nameLength, playerCount);
-        } while (!nameLength || !playerCount);
+            checkPlayerLengthError(isValidNameLength, isValidPlayerCount);
+        } while (!isValidNameLength || !isValidPlayerCount);
 
         return new Players(names);
     }
@@ -48,29 +48,29 @@ public class LadderGame {
         return Convert.splitNames(names);
     }
 
-    private void checkPlayerLengthError(boolean nameLength, boolean playersLength) {
-        if (!nameLength) {
+    private void checkPlayerLengthError(boolean isValidNameLength, boolean isValidPlayerCount) {
+        if (!isValidNameLength) {
             OutputView.printPlayerNameLengthErrorMessage();
             return;
         }
 
-        if (!playersLength) {
+        if (!isValidPlayerCount) {
             OutputView.printPlayerCountErrorMessage();
         }
     }
 
     private Prizes createPrizes(Players players) {
         String[] names;
-        boolean prizesCount;
+        boolean isValidPrizesCount;
 
         do {
             names = inputPrizes();
             int playersCount = players.getPlayerCount();
-            prizesCount = Validator.isValidPrizesCount(names.length, playersCount);
-            if (!prizesCount) {
+            isValidPrizesCount = Validator.isValidPrizesCount(names.length, playersCount);
+            if (!isValidPrizesCount) {
                 OutputView.printPrizeCountErrorMessage(playersCount);
             }
-        } while (!prizesCount);
+        } while (!isValidPrizesCount);
 
         return new Prizes(names);
     }
