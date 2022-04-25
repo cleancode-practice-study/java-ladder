@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,8 +17,20 @@ public class InputView {
     }
 
     public static int inputHeight() {
-        System.out.println("\n최대 사다리 높이는 몇 개인가요?");
-        return scanner.nextInt();
+        int height;
+
+        while (true) {
+            try {
+                System.out.println("\n최대 사다리 높이는 몇 개인가요?");
+                height = scanner.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("정수를 입력 해 주세요.");
+                scanner.nextLine();
+            }
+        }
+
+        return height;
     }
 
     public static String inputPeopleResultRequest() {
