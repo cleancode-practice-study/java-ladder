@@ -9,7 +9,7 @@ public class RandomLadderCreator {
         List<Line> lines = new ArrayList<>();
 
         IntStream.range(0, maxLadderHeight)
-                .forEach(i -> lines.add(new Line(playerCount)));
+                .forEach(i -> lines.add(new Line(new RandomLineCreator().getLine(playerCount))));
 
         return lines;
     }

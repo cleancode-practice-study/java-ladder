@@ -1,18 +1,12 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final List<Boolean> points = new ArrayList<>();
+    private List<Boolean> points;
 
-    public Line (int playerCount) {
-        addRoot(RandomRootCreator.getRandomRoot());
-
-        for (int i = 1 ; i < playerCount - 1 ; i++) {
-            boolean previousRoot = points.get(i - 1);
-            addRoot(previousRoot);
-        }
+    public Line (List<Boolean> points) {
+        this.points = points;
     }
 
     private void addRoot(boolean previousRoot) {
