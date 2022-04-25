@@ -9,16 +9,6 @@ public class Line {
         this.points = points;
     }
 
-    private void addRoot(boolean previousRoot) {
-        if (previousRoot) {
-            points.add(false);
-        }
-
-        if (!previousRoot) {
-            points.add(RandomRootCreator.getRandomRoot());
-        }
-    }
-
     public List<Boolean> getLine() {
         return points;
     }
