@@ -16,7 +16,7 @@ public class LadderGame {
 
         printLadder(players, ladder, prizes);
         GameResult gameResult = createGameResult(players, ladder, prizes);
-        askAndPrintGameResult(gameResult);
+        printGameResult(gameResult);
     }
 
     private void printPlayerResult(GameResult gameResult, String name) {
@@ -30,33 +30,19 @@ public class LadderGame {
 
     private Players createPlayers() {
         String[] names;
-        boolean isValidNameLength, isValidPlayerCount;
+        Players players;
 
         do {
             names = inputPlayersNames();
-            isValidNameLength = Validator.isValidPlayerNameLength(names);
-            isValidPlayerCount = Validator.isValidPlayersCount(names);
+            players = new Players(names);
+        } while (!players.isValidNameLength(names) || !players.isValidPlayerCount(names));
 
-            checkPlayerLengthError(isValidNameLength, isValidPlayerCount);
-        } while (!isValidNameLength || !isValidPlayerCount);
-
-        return new Players(names);
+        return players;
     }
 
     private String[] inputPlayersNames() {
         String names = InputView.inputPlayersNames();
         return Convert.splitNames(names);
-    }
-
-    private void checkPlayerLengthError(boolean isValidNameLength, boolean isValidPlayerCount) {
-        if (!isValidNameLength) {
-            OutputView.printPlayerNameLengthErrorMessage();
-            return;
-        }
-
-        if (!isValidPlayerCount) {
-            OutputView.printPlayerCountErrorMessage();
-        }
     }
 
     private Prizes createPrizes(Players players) {
@@ -99,7 +85,7 @@ public class LadderGame {
         return new GameResult(gameResultCreator.getGameResult());
     }
 
-    private void askAndPrintGameResult(GameResult gameResult) {
+    private void printGameResult(GameResult gameResult) {
         do {
             String name = InputView.inputPeopleResultRequest();
             if (name.equals(ALL)) {
