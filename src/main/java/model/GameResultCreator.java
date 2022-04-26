@@ -5,13 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class GameResultCreator {
-    private final List<String> players;
-    private final List<Line> lines;
     private final Map<String, String> gameResult;
 
     public GameResultCreator(List<String> players, List<Line> lines, List<String> prizes) {
-        this.players = players;
-        this.lines = lines;
         this.gameResult = createGameResult(players, lines, prizes);
     }
 
@@ -27,38 +23,40 @@ public class GameResultCreator {
             int height = 0;
 
             while (height < lines.size()) {
-                location = upDateLocation(location, height);
+                location = upDateLocation(players, lines, location, height);
                 height++;
             }
 
-            gameResult.put(players.get(i), prizes.get(location));
+            String playerName = players.get(i);
+            String prize = prizes.get(location);
+            gameResult.put(playerName, prize);
         }
 
         return gameResult;
     }
 
-    private int upDateLocation(int location, int height) {
+    private int upDateLocation(List<String> players, List<Line> lines, int location, int height) {
         int lastIdx = players.size() - 1;
 
         if (location == 0) {
-            location = upDateRightLocation(location, height);
+            location = upDateRightLocation(lines, location, height);
             return location;
         }
 
         if (location == lastIdx) {
-            location = upDateLeftLocation(location, height);
+            location = upDateLeftLocation(lines, location, height);
             return location;
         }
 
-        int newLocation = upDateRightLocation(location, height);
+        int newLocation = upDateRightLocation(lines, location, height);
         if (location != newLocation) {
             return newLocation;
         }
 
-        return upDateLeftLocation(location, height);
+        return upDateLeftLocation(lines, location, height);
     }
 
-    private int upDateRightLocation(int location, int height) {
+    private int upDateRightLocation(List<Line> lines, int location, int height) {
         Line line = lines.get(height);
         List<Boolean> points = line.getLine();
         boolean rightPoint = points.get(location);
@@ -70,7 +68,7 @@ public class GameResultCreator {
         return location;
     }
 
-    private int upDateLeftLocation(int location, int height) {
+    private int upDateLeftLocation(List<Line> lines, int location, int height) {
         Line line = lines.get(height);
         List<Boolean> points = line.getLine();
         boolean leftPoint = points.get(location - 1);
