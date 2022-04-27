@@ -11,10 +11,6 @@ public class Line {
         this.line = createLine(width);
     }
 
-    public List<Boolean> getLine() {
-        return this.line;
-    }
-
     private List<Boolean> createLine(int width) {
         Random random = new Random();
         List<Boolean> points = new ArrayList<>();
@@ -47,5 +43,9 @@ public class Line {
 
     private boolean isValidPoints(List<Boolean> points, int index) {
         return points.get(index) && points.get(index + 1);
+    }
+
+    public List<Boolean> getLine() {
+        return this.line;
     }
 }

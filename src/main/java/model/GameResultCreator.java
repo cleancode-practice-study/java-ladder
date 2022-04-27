@@ -11,10 +11,6 @@ public class GameResultCreator {
         this.gameResult = createGameResult(players, lines, prizes);
     }
 
-    public Map<String, String> getGameResult() {
-        return this.gameResult;
-    }
-
     private Map<String, String> createGameResult(List<String> players, List<Line> lines, List<String> prizes) {
         Map<String, String> gameResult = new HashMap<>();
 
@@ -83,6 +79,10 @@ public class GameResultCreator {
         }
 
         return location;
+    }
+
+    public Map<String, String> getGameResult() {
+        return this.gameResult;
     }
 }
 

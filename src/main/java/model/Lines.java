@@ -10,10 +10,6 @@ public class Lines {
         this.lines = createValidLines(width, height);
     }
 
-    public List<Line> getLines() {
-        return this.lines;
-    }
-
     private List<Line> createValidLines(int width, int height) {
         List<Line> lines;
         boolean replay = true;
@@ -73,4 +69,9 @@ public class Lines {
 
         return count;
     }
+
+    public List<Line> getLines() {
+        return this.lines;
+    }
+
 }
