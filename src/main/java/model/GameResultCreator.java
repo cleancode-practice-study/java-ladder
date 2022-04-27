@@ -19,45 +19,51 @@ public class GameResultCreator {
         Map<String, String> gameResult = new HashMap<>();
 
         for (int i = 0; i < players.size(); i++) {
-            int location = i;
-            int height = 0;
-
-            while (height < lines.size()) {
-                Line line = lines.get(height);
-                location = updateLocation(players, line, location);
-                height++;
-            }
+            int finalPlayerLocationIdx = findFinalPlayerLocationIdx(lines, i);
 
             String playerName = players.get(i);
-            String prize = prizes.get(location);
+            String prize = prizes.get(finalPlayerLocationIdx);
             gameResult.put(playerName, prize);
         }
 
         return gameResult;
     }
 
-    private int updateLocation(List<String> players, Line line, int location) {
-        int lastIdx = players.size() - 1;
+    private int findFinalPlayerLocationIdx(List<Line> lines, int playerStartIdx) {
+        int location = playerStartIdx;
+        int height = 0;
+
+        while (height < lines.size()) {
+            Line line = lines.get(height);
+            location = updateLocation(line, location);
+            height++;
+        }
+
+        return location;
+    }
+
+    private int updateLocation(Line line, int location) {
+        int lastIdx = line.getLine().size();
 
         if (location == 0) {
-            location = updateRightLocation(line, location);
+            location = updateRightDirection(line, location);
             return location;
         }
 
         if (location == lastIdx) {
-            location = updateLeftLocation(line, location);
+            location = updateLeftDirection(line, location);
             return location;
         }
 
-        int newLocation = updateRightLocation(line, location);
+        int newLocation = updateRightDirection(line, location);
         if (location != newLocation) {
             return newLocation;
         }
 
-        return updateLeftLocation(line, location);
+        return updateLeftDirection(line, location);
     }
 
-    private int updateRightLocation(Line line, int location) {
+    private int updateRightDirection(Line line, int location) {
         List<Boolean> points = line.getLine();
         boolean rightPoint = points.get(location);
 
@@ -68,7 +74,7 @@ public class GameResultCreator {
         return location;
     }
 
-    private int updateLeftLocation(Line line, int location) {
+    private int updateLeftDirection(Line line, int location) {
         List<Boolean> points = line.getLine();
         boolean leftPoint = points.get(location - 1);
 
