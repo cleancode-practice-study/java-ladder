@@ -6,7 +6,8 @@ public class Ladder {
     private final Lines lines;
 
     public Ladder(int playerCount, int height) {
-        this.lines = new Lines(playerCount - 1, height);
+        int width = playerCount - 1;
+        this.lines = new Lines(width, height);
     }
 
     public List<Line> getLadder() {

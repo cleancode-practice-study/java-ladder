@@ -4,28 +4,22 @@ import model.*;
 import view.InputView;
 import view.OutputView;
 
+import java.util.Map;
+
 public class LadderGame {
     public static final String ALL = "all";
 
     public void play() {
         Players players = createPlayers();
-        Prizes prizes = createPrizes(players);
         int playerCount = players.getPlayerCount();
+        Prizes prizes = createPrizes(playerCount);
         int height = inputHeight();
+
         Ladder ladder = new Ladder(playerCount, height);
 
         printLadder(players, ladder, prizes);
         GameResult gameResult = createGameResult(players, ladder, prizes);
         printGameResult(gameResult);
-    }
-
-    private void printPlayerResult(GameResult gameResult, String name) {
-        if (gameResult.getGameResult().get(name) == null) {
-            OutputView.printPlayerErrorMessage();
-            return;
-        }
-
-        OutputView.printOnePeopleGameResult(gameResult.getGameResult(), name);
     }
 
     private Players createPlayers() {
@@ -45,14 +39,14 @@ public class LadderGame {
         return Convert.splitNames(names);
     }
 
-    private Prizes createPrizes(Players players) {
+    private Prizes createPrizes(int playerCount) {
         String[] prize;
         Prizes prizes;
 
         do {
             prize = inputPrizes();
             prizes = new Prizes(prize);
-        } while (!prizes.isValidPrizeCount(prize, players.getPlayerCount()));
+        } while (!prizes.isValidPrizeCount(prize, playerCount));
 
         return prizes;
     }
@@ -92,5 +86,16 @@ public class LadderGame {
         } while (true);
 
         OutputView.printAllGameResult(gameResult.getGameResult());
+    }
+
+    private void printPlayerResult(GameResult gameResult, String name) {
+        Map<String, String> results = gameResult.getGameResult();
+
+        if (results.get(name) == null) {
+            OutputView.printPlayerErrorMessage();
+            return;
+        }
+
+        OutputView.printOnePeopleGameResult(gameResult.getGameResult(), name);
     }
 }

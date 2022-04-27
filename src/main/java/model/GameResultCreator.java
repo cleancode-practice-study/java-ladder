@@ -23,7 +23,8 @@ public class GameResultCreator {
             int height = 0;
 
             while (height < lines.size()) {
-                location = upDateLocation(players, lines, location, height);
+                Line line = lines.get(height);
+                location = updateLocation(players, line, location);
                 height++;
             }
 
@@ -35,29 +36,28 @@ public class GameResultCreator {
         return gameResult;
     }
 
-    private int upDateLocation(List<String> players, List<Line> lines, int location, int height) {
+    private int updateLocation(List<String> players, Line line, int location) {
         int lastIdx = players.size() - 1;
 
         if (location == 0) {
-            location = upDateRightLocation(lines, location, height);
+            location = updateRightLocation(line, location);
             return location;
         }
 
         if (location == lastIdx) {
-            location = upDateLeftLocation(lines, location, height);
+            location = updateLeftLocation(line, location);
             return location;
         }
 
-        int newLocation = upDateRightLocation(lines, location, height);
+        int newLocation = updateRightLocation(line, location);
         if (location != newLocation) {
             return newLocation;
         }
 
-        return upDateLeftLocation(lines, location, height);
+        return updateLeftLocation(line, location);
     }
 
-    private int upDateRightLocation(List<Line> lines, int location, int height) {
-        Line line = lines.get(height);
+    private int updateRightLocation(Line line, int location) {
         List<Boolean> points = line.getLine();
         boolean rightPoint = points.get(location);
 
@@ -68,8 +68,7 @@ public class GameResultCreator {
         return location;
     }
 
-    private int upDateLeftLocation(List<Line> lines, int location, int height) {
-        Line line = lines.get(height);
+    private int updateLeftLocation(Line line, int location) {
         List<Boolean> points = line.getLine();
         boolean leftPoint = points.get(location - 1);
 
