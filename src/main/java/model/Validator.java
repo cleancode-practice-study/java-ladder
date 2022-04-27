@@ -13,11 +13,11 @@ public class Validator {
         return true;
     }
 
-    public static boolean isValidPlayersCount(String[] names) {
+    public static boolean isValidPlayerCount(String[] names) {
         return PLAYER_MIN_COUNT <= names.length;
     }
 
-    public static boolean isValidPrizesCount(int prizesCount, int playersCount) {
+    public static boolean isValidPrizeCount(int prizesCount, int playersCount) {
         return prizesCount == playersCount;
     }
 

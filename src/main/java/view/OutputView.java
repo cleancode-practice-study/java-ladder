@@ -4,20 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-
     public static final String GAME_RESULT_MESSAGE = "\n실행 결과";
-
-    public static void printPlayerNameLengthErrorMessage() {
-        System.out.println("이름은 최대 5글자까지 입력할 수 있습니다. 다시 입력 해 주세요.");
-    }
-
-    public static void printPlayerCountErrorMessage() {
-        System.out.println("두명 이상 입력 해 주세요. \n");
-    }
-
-    public static void printPrizeCountErrorMessage(int playersCount) {
-        System.out.println(playersCount + "개의 실행 결과를 입력 해 주세요.");
-    }
 
     public static void printPlayerErrorMessage() {
         System.out.println("해당 플레이어는 존재하지 않습니다. \n다시 입력 해 주세요.");

@@ -15,7 +15,7 @@ public class Players {
     }
 
     public boolean isValidPlayerCount(String[] names) {
-        boolean isValidPlayerCount = Validator.isValidPlayersCount(names);
+        boolean isValidPlayerCount = Validator.isValidPlayerCount(names);
 
         if (!isValidPlayerCount) {
             System.out.println("두명 이상 입력 해 주세요. \n");

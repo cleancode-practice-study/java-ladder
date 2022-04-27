@@ -11,6 +11,16 @@ public class Prizes {
         prizes.addAll(Arrays.asList(names));
     }
 
+    public boolean isValidPrizeCount(String[] prize, int playerCount) {
+        boolean isValidPrizeCount = Validator.isValidPrizeCount(prize.length, playerCount);
+
+        if (!isValidPrizeCount) {
+            System.out.println(playerCount + "개의 실행 결과를 입력 해 주세요.");
+        }
+
+        return isValidPrizeCount;
+    }
+
     public List<String> getPrizes() {
         return prizes;
     }

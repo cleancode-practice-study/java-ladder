@@ -46,19 +46,15 @@ public class LadderGame {
     }
 
     private Prizes createPrizes(Players players) {
-        String[] names;
-        boolean isValidPrizesCount;
+        String[] prize;
+        Prizes prizes;
 
         do {
-            names = inputPrizes();
-            int playersCount = players.getPlayerCount();
-            isValidPrizesCount = Validator.isValidPrizesCount(names.length, playersCount);
-            if (!isValidPrizesCount) {
-                OutputView.printPrizeCountErrorMessage(playersCount);
-            }
-        } while (!isValidPrizesCount);
+            prize = inputPrizes();
+            prizes = new Prizes(prize);
+        } while (!prizes.isValidPrizeCount(prize, players.getPlayerCount()));
 
-        return new Prizes(names);
+        return prizes;
     }
 
     private String[] inputPrizes() {
