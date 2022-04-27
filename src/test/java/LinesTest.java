@@ -18,19 +18,26 @@ public class LinesTest {
         //when
         List<Integer> bridgesCounts = new ArrayList<>();
         for (int i = 0; i < width; i++) {
-            int count = 0;
-            for (int j = 0; j < height; j++) {
-                Line line = lines.getLines().get(i);
-                List<Boolean> points = line.getLine();
-                if (points.get(j))
-                    count++;
-            }
-            bridgesCounts.add(count);
+            int pointCount = calculatePointCount(lines.getLines(), height, i);
+            bridgesCounts.add(pointCount);
         }
 
         //then
         assertThat(bridgesCounts.get(0)).isGreaterThan(0);
         assertThat(bridgesCounts.get(1)).isGreaterThan(0);
         assertThat(bridgesCounts.get(2)).isGreaterThan(0);
+    }
+
+    private int calculatePointCount(List<Line> lines, int height, int widthIdx) {
+        int pointCount = 0;
+
+        for (int j = 0; j < height; j++) {
+            Line line = lines.get(widthIdx);
+            List<Boolean> points = line.getLine();
+            if (points.get(j))
+                pointCount++;
+        }
+
+        return pointCount;
     }
 }

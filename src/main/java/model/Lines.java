@@ -60,14 +60,14 @@ public class Lines {
         for (int i = 0; i < height; i++) {
             Line line = lines.get(i);
             List<Boolean> points = line.getLine();
-            count = updateBridgeCount(points, index, count);
+            count = updateBridgeCount(points.get(index), count);
         }
 
         return count;
     }
 
-    private int updateBridgeCount(List<Boolean> points, int index, int count) {
-        if (points.get(index)) {
+    private int updateBridgeCount(boolean point, int count) {
+        if (point) {
             count++;
         }
 

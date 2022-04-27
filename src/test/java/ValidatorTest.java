@@ -34,7 +34,7 @@ public class ValidatorTest {
         String[] names = {"ha", "jin", "dowon"};
 
         //when
-        boolean result = Validator.isValidPlayersCount(names);
+        boolean result = Validator.isValidPlayerCount(names);
 
         //then
         assertThat(result).isTrue();
@@ -46,7 +46,7 @@ public class ValidatorTest {
         String[] names = {"halim"};
 
         //when
-        boolean result = Validator.isValidPlayersCount(names);
+        boolean result = Validator.isValidPlayerCount(names);
 
         //then
         assertThat(result).isFalse();
@@ -59,7 +59,7 @@ public class ValidatorTest {
         int playersCount = 5;
 
         //when
-        boolean result = Validator.isValidPrizesCount(prizesCount, playersCount);
+        boolean result = Validator.isValidPrizeCount(prizesCount, playersCount);
 
         //then
         assertThat(result).isTrue();
@@ -72,7 +72,7 @@ public class ValidatorTest {
         int playersCount = 3;
 
         //when
-        boolean result = Validator.isValidPrizesCount(prizesCount, playersCount);
+        boolean result = Validator.isValidPrizeCount(prizesCount, playersCount);
 
         //then
         assertThat(result).isFalse();
