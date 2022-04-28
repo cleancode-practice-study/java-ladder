@@ -16,16 +16,17 @@ public class GameResultCreatorTest {
             {
                 add("halim");
                 add("dowon");
-                add("jinhee");
+                add("jinhe");
             }
 
         };
 
+        int width = players.size() - 1;
         List<Line> lines = new ArrayList<Line>() {
             {
-                add(new Line(players.size() - 1));
-                add(new Line(players.size() - 1));
-                add(new Line(players.size() - 1));
+                add(new Line(width));
+                add(new Line(width));
+                add(new Line(width));
             }
         };
 
@@ -43,6 +44,11 @@ public class GameResultCreatorTest {
 
         //then
         assertThat(result.size()).isEqualTo(3);
-
+        assertThat(result).containsKeys("halim");
+        assertThat(result).containsKeys("dowon");
+        assertThat(result).containsKeys("jinhe");
+        assertThat(result).containsValues("꽝");
+        assertThat(result).containsValues("3000");
+        assertThat(result).containsValues("5000");
     }
 }
