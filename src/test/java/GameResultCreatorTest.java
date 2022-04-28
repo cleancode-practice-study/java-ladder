@@ -37,9 +37,9 @@ public class GameResultCreatorTest {
                 add("5000");
             }
         };
-        GameResultCreator gameResultCreator = new GameResultCreator(players, lines, prizes);
 
         //when
+        GameResultCreator gameResultCreator = new GameResultCreator(players, lines, prizes);
         Map<String, String> result = gameResultCreator.getGameResult();
 
         //then

@@ -13,9 +13,9 @@ public class LinesTest {
         //given
         int width = 3;
         int height = 3;
-        Lines lines = new Lines(width, height);
 
         //when
+        Lines lines = new Lines(width, height);
         List<Integer> bridgesCounts = new ArrayList<>();
         for (int i = 0; i < width; i++) {
             int pointCount = calculatePointCount(lines.getLines(), height, i);

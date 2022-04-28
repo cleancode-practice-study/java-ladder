@@ -10,9 +10,9 @@ public class PrizesTest {
     void 실행_결과_리스트를_생성하는_경우() {
         //given
         String[] names = {"3000", "5000", "꽝", "500"};
-        Prizes prizes = new Prizes(names);
 
         //when
+        Prizes prizes = new Prizes(names);
         List<String> prize = prizes.getPrizes();
 
         //then

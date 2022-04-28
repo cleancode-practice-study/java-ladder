@@ -13,9 +13,9 @@ public class LadderTest {
         int playerCount = 5;
         int width = playerCount - 1;
         int height = 5;
-        Ladder ladder = new Ladder(playerCount, height);
 
         //when
+        Ladder ladder = new Ladder(playerCount, height);
         List<Line> ladderLine = ladder.getLadder();
 
         //then

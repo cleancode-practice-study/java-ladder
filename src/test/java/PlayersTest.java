@@ -10,9 +10,9 @@ public class PlayersTest {
     void 플레이어_리스트를_생성하는_경우() {
         //given
         String[] names = {"halim", "jinhe", "dowon"};
-        Players players = new Players(names);
 
         //when
+        Players players = new Players(names);
         List<String> player = players.getPlayers();
         int count = players.getPlayerCount();
 
