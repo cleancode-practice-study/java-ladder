@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLineCreator {
-    private final List<Boolean> points = new ArrayList<>();
-
     public List<Boolean> getLine (int playerCount) {
-        addRoot(RandomRootCreator.getRandomRoot());
+        List<Boolean> points = new ArrayList<>();
+
+        addRoot(points, RandomRootCreator.getRandomRoot());
 
         for (int i = 1 ; i < playerCount - 1 ; i++) {
             boolean previousRoot = points.get(i - 1);
-            addRoot(previousRoot);
+            addRoot(points, previousRoot);
         }
 
         return points;
     }
 
-    private void addRoot(boolean previousRoot) {
+    private void addRoot(List<Boolean> points, boolean previousRoot) {
         if (previousRoot) {
             points.add(false);
         }
