@@ -13,11 +13,13 @@ public class LadderGame {
     public static boolean checkUnderFiveLetter(String names) {
         List<String> playerNames = LadderGame.splitNames(names);
 
-        return playerNames.stream().allMatch(name -> name.length() < PLAYER_NAME_LIMIT);
+        return playerNames.stream()
+                .allMatch(name -> name.length() < PLAYER_NAME_LIMIT);
     }
 
     public static boolean checkIsMatchedWithPlayerCount(String outputNames, Players players) {
-        List<String> outputs = Arrays.stream(outputNames.split(",")).collect(Collectors.toList());
+        List<String> outputs = Arrays.stream(outputNames.split(","))
+                .collect(Collectors.toList());
 
         return outputs.size() == players.getPlayerCount();
     }
@@ -34,7 +36,8 @@ public class LadderGame {
     }
 
     public static List<String> splitNames(String names) {
-        return Arrays.stream(names.split(",")).collect(Collectors.toList());
+        return Arrays.stream(names.split(","))
+                .collect(Collectors.toList());
     }
 
     public static Outputs getOutputs(String outputNames) {
