@@ -26,8 +26,8 @@ public class Controller {
 
         do {
             playerNames = InputView.getPlayerNamesInput();
-            isContainComma = LadderGame.checkContainComma(playerNames);
-            isUnderFiveLetter = LadderGame.checkUnderFiveLetter(playerNames);
+            isContainComma = Validator.checkContainComma(playerNames);
+            isUnderFiveLetter = Validator.checkUnderFiveLetter(playerNames);
 
             checkCommaError(isContainComma);
             checkLetterError(isUnderFiveLetter);
@@ -55,8 +55,8 @@ public class Controller {
 
         do {
             outputNames = InputView.getGameResultInput();
-            isMatchedWithPlayerCount = LadderGame.checkIsMatchedWithPlayerCount(outputNames, players);
-            isContainComma = LadderGame.checkContainComma(outputNames);
+            isMatchedWithPlayerCount = Validator.checkIsMatchedWithPlayerCount(outputNames, players);
+            isContainComma = Validator.checkContainComma(outputNames);
 
             checkOutputCount(isMatchedWithPlayerCount);
             checkCommaError(isContainComma);
@@ -83,7 +83,7 @@ public class Controller {
         while (true) {
             String printCommand = InputView.printWhichPersonToBeSeen();
 
-            isAllPrint = LadderGame.checkAllPrintCommand(printCommand);
+            isAllPrint = Validator.checkAllPrintCommand(printCommand);
 
             printGameResult(isAllPrint, gameResult, players, printCommand);
         }
@@ -104,7 +104,7 @@ public class Controller {
     }
 
     private void printEachGameResult(GameResult gameResult, Players players, String printCommand) {
-        boolean isValidName = LadderGame.checkPlayerName(printCommand, players);
+        boolean isValidName = Validator.checkPlayerName(printCommand, players);
 
         if (isValidName) {
             Player player = LadderGame.findPlayer(printCommand, players);
