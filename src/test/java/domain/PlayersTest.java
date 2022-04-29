@@ -21,4 +21,11 @@ public class PlayersTest {
         assertThat(players.getPlayerNames()).contains("진희").contains("하림").contains("도원");
     }
 
+    @Test
+    public void 참가자_찾기() {
+        Players players = new Players(Arrays.asList(new Player("진희"), new Player("하림"), new Player("도원")));
+
+        assertThat(players.findPlayer(0).getName()).isEqualTo("진희");
+    }
+
 }

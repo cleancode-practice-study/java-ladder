@@ -8,8 +8,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderGameTest {
-
-
     @Test
     public void 입력_받은_이름으로_참가자_객체_생성() {
         String playerNames = "진희,하림,도원";

@@ -24,4 +24,8 @@ public class Players {
                 .map(Player::getName)
                 .collect(Collectors.toList());
     }
+
+    public Player findPlayer(int columnIndex) {
+        return players.get(columnIndex);
+    }
 }

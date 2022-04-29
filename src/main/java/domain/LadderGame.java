@@ -35,7 +35,7 @@ public class LadderGame {
         Map<Player, Output> result = new HashMap<>();
 
         for (int columnIndex = 0 ; columnIndex < players.getPlayerCount() ; columnIndex++) {
-            Player player = players.getPlayers().get(columnIndex);
+            Player player = players.findPlayer(columnIndex);
             Output output = ladder.getEachLadderResult(columnIndex, outputs);
 
             result.put(player, output);
