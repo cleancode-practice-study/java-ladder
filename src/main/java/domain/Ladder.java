@@ -42,23 +42,23 @@ public class Ladder {
         int ladderHeight = getLadderHeight();
         int ladderWidth = getLadderWidth();
 
-        int currentRowLine;
         int currentColumnLine;
+        int currentRowLine;
 
-        for (currentRowLine = startLine, currentColumnLine = 0 ; currentColumnLine < ladderHeight  ; ) {
-            Line ladderLine = lines.get(currentColumnLine);
+        for (currentColumnLine = startLine, currentRowLine = 0 ; currentRowLine < ladderHeight  ; ) {
+            Line ladderLine = lines.get(currentRowLine);
             List<Boolean> points = ladderLine.getLine();
 
-            if (canMoveRight(currentRowLine, ladderWidth, points)) {
-                currentRowLine++;
-            } else if (cantMoveRight(currentRowLine, points)) {
-                currentRowLine--;
+            if (canMoveRight(currentColumnLine, ladderWidth, points)) {
+                currentColumnLine++;
+            } else if (cantMoveRight(currentColumnLine, points)) {
+                currentColumnLine--;
             }
 
-            currentColumnLine++;
+            currentRowLine++;
         }
 
-        return outputs.getOutput(currentRowLine);
+        return outputs.getOutput(currentColumnLine);
     }
 
     private boolean canMoveRight(int currentRowLine, int ladderWidth, List<Boolean> points) {
