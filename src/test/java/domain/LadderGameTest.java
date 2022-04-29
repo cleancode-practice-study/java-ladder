@@ -14,7 +14,7 @@ public class LadderGameTest {
     public void 입력_받은_이름으로_참가자_객체_생성() {
         String playerNames = "진희,하림,도원";
 
-        Players players = LadderGame.getParticipantsByNames(playerNames);
+        Players players = LadderGame.createParticipantsByNames(playerNames);
 
         assertThat(players.getPlayerCount()).isEqualTo(3);
         assertThat(players.getPlayers().get(0).getName()).isEqualTo("진희");
@@ -24,7 +24,7 @@ public class LadderGameTest {
     public void 입력_받은_실행_결과로_실행_결과_객체_생성() {
         String outputNames = "통과,통과,꽝";
 
-        Outputs outputs = LadderGame.getOutputs(outputNames);
+        Outputs outputs = LadderGame.createOutputsByInput(outputNames);
 
         assertThat(outputs.getOutputs().size()).isEqualTo(3);
         assertThat(outputs.getOutputs().get(0).getOutputName()).isEqualTo("통과");

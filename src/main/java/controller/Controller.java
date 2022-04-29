@@ -33,7 +33,7 @@ public class Controller {
             checkLetterError(isUnderFiveLetter);
         } while (!isContainComma || !isUnderFiveLetter);
 
-        return LadderGame.getParticipantsByNames(playerNames);
+        return LadderGame.createParticipantsByNames(playerNames);
     }
 
     private void checkCommaError(boolean isContainComma) {
@@ -62,7 +62,7 @@ public class Controller {
             checkCommaError(isContainComma);
         } while (!isMatchedWithPlayerCount || !isContainComma);
 
-        return LadderGame.getOutputs(outputNames);
+        return LadderGame.createOutputsByInput(outputNames);
     }
 
     private void checkOutputCount(boolean isMatchedWithPlayerCount) {

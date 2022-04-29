@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class LadderGame {
-    public static Players getParticipantsByNames(String playerNames) {
+    public static Players createParticipantsByNames(String playerNames) {
         List<String> splitNames = splitNames(playerNames);
 
         List<Player> players = splitNames
@@ -20,7 +20,7 @@ public class LadderGame {
                 .collect(Collectors.toList());
     }
 
-    public static Outputs getOutputs(String outputNames) {
+    public static Outputs createOutputsByInput(String outputNames) {
         List<String> splitOutputs = splitNames(outputNames);
 
         List<Output> outputs = splitOutputs
