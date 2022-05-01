@@ -18,7 +18,7 @@ public class LinesTest {
         Lines lines = new Lines(width, height);
         List<Integer> bridgesCounts = new ArrayList<>();
         for (int i = 0; i < width; i++) {
-            int pointCount = calculatePointCount(lines, height, i);
+            int pointCount = calculatePointCount(lines.getLines(), height, i);
             bridgesCounts.add(pointCount);
         }
 
@@ -28,11 +28,11 @@ public class LinesTest {
         assertThat(bridgesCounts.get(2)).isGreaterThan(0);
     }
 
-    private int calculatePointCount(Lines lines, int height, int widthIdx) {
+    private int calculatePointCount(List<Line> lines, int height, int widthIdx) {
         int pointCount = 0;
 
         for (int j = 0; j < height; j++) {
-            Line line = lines.getLines().get(widthIdx);
+            Line line = lines.get(widthIdx);
             List<Boolean> points = line.getLine();
             if (points.get(j))
                 pointCount++;
