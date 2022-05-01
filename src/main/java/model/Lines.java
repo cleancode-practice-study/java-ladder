@@ -18,7 +18,8 @@ public class Lines {
             lines = createRandomLines(width, height);
             List<Integer> count = calculateBridgesCounts(lines, width, height);
 
-            replay = count.stream().anyMatch(bridgeCount -> bridgeCount == 0);
+            replay = count.stream()
+                    .anyMatch(bridgeCount -> bridgeCount == 0);
         } while (replay);
 
         return lines;

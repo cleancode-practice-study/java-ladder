@@ -7,7 +7,8 @@ public class Validator {
     public static final int PLAYER_MIN_COUNT = 2;
 
     public static boolean isValidPlayerNameLength(String[] names) {
-        return Arrays.stream(names).allMatch(name -> name.length() <= PLAYER_NAME_STANDARD_LENGTH);
+        return Arrays.stream(names)
+                .allMatch(name -> name.length() <= PLAYER_NAME_STANDARD_LENGTH);
     }
 
     public static boolean isValidPlayerCount(String[] names) {
