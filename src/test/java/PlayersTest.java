@@ -23,4 +23,57 @@ public class PlayersTest {
 
         assertThat(count).isEqualTo(3);
     }
+
+    @Test
+    void 입력한_플레이어가_한명인_경우(){
+        //given
+        String[] name = {"halim"};
+
+        //when
+        Players players = new Players(name);
+        boolean isValid = players.isValidPlayerCount(name);
+
+        //then
+        assertThat(isValid).isFalse();
+    }
+
+    @Test
+    void 입력한_플레이어가_두명_이상인_경우(){
+        //given
+        String[] names = {"halim", "jinhe"};
+
+        //when
+        Players players = new Players(names);
+        boolean isValid = players.isValidPlayerCount(names);
+
+        //then
+        assertThat(isValid).isTrue();
+    }
+
+    @Test
+    void 입력한_플레이어_이름의_길이가_6자_이상인_경우(){
+        //given
+        String[] names = {"halimi", "jinhee"};
+
+        //when
+        Players players= new Players(names);
+        boolean isValid = players.isValidNameLength(names);
+
+        //then
+        assertThat(isValid).isFalse();
+    }
+
+    @Test
+    void 입력한_플레이어_이름의_길이가_5자_이하인_경우(){
+        //given
+        String[] names = {"halim", "jinhe"};
+
+        //when
+        Players players= new Players(names);
+        boolean isValid = players.isValidNameLength(names);
+
+        //then
+        assertThat(isValid).isTrue();
+    }
+
 }
