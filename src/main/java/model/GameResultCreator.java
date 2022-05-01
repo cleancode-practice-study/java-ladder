@@ -52,11 +52,8 @@ public class GameResultCreator {
         }
 
         int newLocation = updateRightDirection(line.getLine(), location);
-        if (location != newLocation) {
-            return newLocation;
-        }
 
-        return updateLeftDirection(line.getLine(), location);
+        return newLocation != location ? newLocation : updateLeftDirection(line.getLine(), location);
     }
 
     private int updateRightDirection(List<Boolean> points, int location) {
@@ -66,7 +63,7 @@ public class GameResultCreator {
 
     private int updateLeftDirection(List<Boolean> points, int location) {
         boolean leftPoint = points.get(location - 1);
-        return leftPoint ? location - 1:location;
+        return leftPoint ? location - 1 : location;
     }
 
     public Map<String, String> getGameResult() {

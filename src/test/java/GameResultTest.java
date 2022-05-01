@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameResultTest {
     @Test
-    void 게임_결과를_생성하는_경우(){
+    void 게임_결과_객체를_생성하는_경우(){
         //given
         Map<String, String> gameResult = new HashMap<String, String>(){
             {
