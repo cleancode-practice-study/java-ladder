@@ -6,10 +6,6 @@ import java.util.Map;
 public class OutputView {
     public static final String GAME_RESULT_MESSAGE = "\n실행 결과";
 
-    public static void printPlayerErrorMessage() {
-        System.out.println("해당 플레이어는 존재하지 않습니다. \n다시 입력 해 주세요.");
-    }
-
     public static void printPlayersNames(List<String> players) {
         System.out.println("\n사다리 결과\n");
         for (String playerName : players)
@@ -23,7 +19,7 @@ public class OutputView {
 
         for (int i = 0; i < line.size(); i++) {
             boolean point = line.get(i);
-            printPoint(point, i, lastIdx);
+            printLinePoint(point, i, lastIdx);
         }
 
         System.out.println("");
@@ -47,7 +43,7 @@ public class OutputView {
             System.out.println(name + " : " + gameResult.get(name));
     }
 
-    private static void printPoint(boolean point, int pointIdx, int lastIdx) {
+    private static void printLinePoint(boolean point, int pointIdx, int lastIdx) {
         if (point) {
             if (pointIdx != lastIdx) {
                 System.out.print("| ----- ");

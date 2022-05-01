@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
+    public static final String INPUT_POSITIVE_NUMBER_ERROR_MESSAGE = "양수를 입력 해 주세요.";
     static Scanner scanner = new Scanner(System.in);
 
     public static String inputPlayersNames() {
@@ -27,10 +28,10 @@ public class InputView {
                 if (height > 0) {
                     break;
                 }else{
-                    System.out.println("높이는 1 이상이여야 합니다.");
+                    System.out.println(INPUT_POSITIVE_NUMBER_ERROR_MESSAGE);
                 }
             } catch (InputMismatchException e) {
-                System.out.println("정수를 입력 해 주세요.");
+                System.out.println(INPUT_POSITIVE_NUMBER_ERROR_MESSAGE);
                 scanner.nextLine();
             }
         }

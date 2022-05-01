@@ -17,5 +17,4 @@ public class Validator {
     public static boolean isValidPrizeCount(int prizesCount, int playersCount) {
         return prizesCount == playersCount;
     }
-
 }

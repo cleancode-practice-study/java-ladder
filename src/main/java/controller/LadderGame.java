@@ -92,7 +92,7 @@ public class LadderGame {
         Map<String, String> results = gameResult.getGameResult();
 
         if (results.get(name) == null) {
-            OutputView.printPlayerErrorMessage();
+            System.out.println("해당 플레이어는 존재하지 않습니다. \n다시 입력 해 주세요.");
             return;
         }
 
