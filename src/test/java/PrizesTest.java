@@ -20,5 +20,6 @@ public class PrizesTest {
         assertThat(prize.get(1)).isEqualTo("5000");
         assertThat(prize.get(2)).isEqualTo("꽝");
         assertThat(prize.get(3)).isEqualTo("500");
+
     }
 }

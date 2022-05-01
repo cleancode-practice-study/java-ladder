@@ -12,19 +12,13 @@ public class Lines {
 
     private List<Line> createValidLines(int width, int height) {
         List<Line> lines;
-        boolean replay = true;
+        boolean replay;
 
         do {
             lines = createRandomLines(width, height);
             List<Integer> count = calculateBridgesCounts(lines, width, height);
 
-            for (int i : count) {
-                if (i == 0) {
-                    replay = true;
-                    break;
-                }
-                replay = false;
-            }
+            replay = count.stream().anyMatch(bridgeCount -> bridgeCount == 0);
         } while (replay);
 
         return lines;
@@ -63,11 +57,7 @@ public class Lines {
     }
 
     private int updateBridgeCount(boolean point, int count) {
-        if (point) {
-            count++;
-        }
-
-        return count;
+        return point ? count + 1 : count;
     }
 
     public List<Line> getLines() {

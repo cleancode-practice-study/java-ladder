@@ -1,7 +1,7 @@
 import model.Convert;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ConvertTest {
     @Test
@@ -17,5 +17,4 @@ public class ConvertTest {
         assertThat(names[1]).isEqualTo("jinhee");
         assertThat(names[2]).isEqualTo("dowon");
     }
-
 }

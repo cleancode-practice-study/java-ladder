@@ -42,43 +42,31 @@ public class GameResultCreator {
         int lastIdx = line.getLine().size();
 
         if (location == 0) {
-            location = updateRightDirection(line, location);
+            location = updateRightDirection(line.getLine(), location);
             return location;
         }
 
         if (location == lastIdx) {
-            location = updateLeftDirection(line, location);
+            location = updateLeftDirection(line.getLine(), location);
             return location;
         }
 
-        int newLocation = updateRightDirection(line, location);
+        int newLocation = updateRightDirection(line.getLine(), location);
         if (location != newLocation) {
             return newLocation;
         }
 
-        return updateLeftDirection(line, location);
+        return updateLeftDirection(line.getLine(), location);
     }
 
-    private int updateRightDirection(Line line, int location) {
-        List<Boolean> points = line.getLine();
+    private int updateRightDirection(List<Boolean> points, int location) {
         boolean rightPoint = points.get(location);
-
-        if (rightPoint) {
-            location++;
-        }
-
-        return location;
+        return rightPoint ? location + 1 : location;
     }
 
-    private int updateLeftDirection(Line line, int location) {
-        List<Boolean> points = line.getLine();
+    private int updateLeftDirection(List<Boolean> points, int location) {
         boolean leftPoint = points.get(location - 1);
-
-        if (leftPoint) {
-            location--;
-        }
-
-        return location;
+        return leftPoint ? location - 1:location;
     }
 
     public Map<String, String> getGameResult() {
