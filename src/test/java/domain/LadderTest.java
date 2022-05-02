@@ -29,8 +29,9 @@ public class LadderTest {
     public void 랜덤_사다리_생성() {
         int playerCount = 3;
         int maxLadderHeight = 3;
+        RootCreator rootCreator = new RandomRootCreator();
 
-        Ladder ladder = new Ladder(RandomLadderCreator.getRandomLadder(playerCount, maxLadderHeight));
+        Ladder ladder = new Ladder(RandomLadderCreator.getRandomLadder(playerCount, maxLadderHeight, rootCreator));
 
         assertThat(ladder.getLines().size()).isEqualTo(maxLadderHeight);
         assertThat(ladder.getLines().get(0).getLineLength()).isEqualTo(playerCount - 1);

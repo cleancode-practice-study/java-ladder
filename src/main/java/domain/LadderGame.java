@@ -46,9 +46,10 @@ public class LadderGame {
 
     public static Ladder createLadder(int playerCount, int maxLadderHeight) {
         Ladder ladder;
+        RootCreator rootCreator = new RandomRootCreator();
 
         do {
-            ladder = new Ladder(RandomLadderCreator.getRandomLadder(playerCount, maxLadderHeight));
+            ladder = new Ladder(RandomLadderCreator.getRandomLadder(playerCount, maxLadderHeight, rootCreator));
         } while (!ladder.checkLadder());
 
         return ladder;

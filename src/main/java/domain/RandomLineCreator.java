@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLineCreator {
-    public List<Boolean> getLine (int playerCount) {
+    public List<Boolean> getLine (int playerCount, RootCreator rootCreator) {
         List<Boolean> points = new ArrayList<>();
-        RootCreator rootCreator = new RandomRootCreator();
 
         addRoot(points, rootCreator, rootCreator.createRoot());
 

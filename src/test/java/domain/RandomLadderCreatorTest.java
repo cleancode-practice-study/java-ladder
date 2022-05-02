@@ -11,8 +11,9 @@ public class RandomLadderCreatorTest {
     public void 랜덤_사다리_생성() {
         int playerCount = 3;
         int maxLadderHeight = 3;
+        RootCreator rootCreator = new RandomRootCreator();
 
-        List<Line> lines = RandomLadderCreator.getRandomLadder(playerCount, maxLadderHeight);
+        List<Line> lines = RandomLadderCreator.getRandomLadder(playerCount, maxLadderHeight, rootCreator);
 
         assertThat(lines.size()).isEqualTo(maxLadderHeight);
         assertThat(lines.get(0).getLineLength()).isEqualTo(playerCount - 1);
